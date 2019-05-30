@@ -1,0 +1,96 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.GalleryImage>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    img {
+        max-width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        height: auto;
+        background: #fff;
+        box-shadow: 1px 1px 7px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        font-size: 3em;
+        line-height: 1;
+        margin-bottom: 0.5em;
+    }
+
+    p {
+        margin-bottom: 1.5em;
+    }
+
+    ul {
+        list-style: none;
+        margin-bottom: 1.5em;
+    }
+
+    .main-image {
+        width: 100%;
+        margin-bottom: 0.75em;
+        text-align:center;
+    }
+
+    .thumbnails li {
+        display: inline;
+        margin: 0 10px 0 0;
+    }
+</style>
+<div class="container">
+    <div id="main_area">
+        <!-- Slider -->
+        <div class="row">
+
+            <div class="col-sm-12">
+
+                <h3>ألبوم صور / @ViewData["Albumname"]</h3>
+                <p>@ViewData["Description"]</p>
+                <div class="main-image">
+                    <img src="@ViewData["PhImage"]" alt="Placeholder" class="custom">
+                </div>
+
+                <ul class="thumbnails">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <a href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item._thumb)">
+                                <img width="100" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item._thumb)" />
+
+                            </a>
+                        </li>
+
+                    }
+                </ul>
+
+            </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+
+    <script src="/js/jquery.simpleGal.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.thumbnails').simpleGal({
+                mainImage: '.custom'
+            });
+        });
+    </script>
+
+
+}

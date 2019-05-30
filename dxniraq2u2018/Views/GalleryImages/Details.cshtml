@@ -1,0 +1,43 @@
+﻿@model dxniraq2u2018.Models.GalleryImage
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GalleryImage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._thumb)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._thumb)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gallery)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gallery.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-controller="Galleries" asp-action="Index">العودة الى القائمة الرئيسية</a>
+</div>

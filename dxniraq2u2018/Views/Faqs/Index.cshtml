@@ -1,0 +1,35 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Faq>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>الاسئلة المتكررة / @ViewData["FaqCategoryName"]</h3>
+<h4 align="left">@ViewData["FaqUserName"]</h4>
+<div class="container ">
+    <div class="panel-group" id="faqAccordion">
+        @foreach (var item in Model)
+        {
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#@item.Id">
+                    <h3 class="panel-title">
+                        <a style="font-size:19px;color:brown" href="#" class="ing">@Html.DisplayFor(modelItem => item.Question)</a>
+                    </h3>
+                </div>
+                <div id="@item.Id" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">الجواب</span></h5>
+                        <p>
+                            @Html.Raw(item.Answer)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+
+    </div>
+    <!--/panel-group-->
+</div>

@@ -1,0 +1,162 @@
+﻿@model dxniraq2u2018.Models.Post
+@{
+    ViewData["Title"] = "اضافة موضوع للمجموعة";
+}
+<style>
+    .k-autocomplete {
+        width: 100%;
+    }
+</style>
+<h2>اضافة موضوع جديد</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="CreateGroupPost" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="CommunityId" class="control-label"></label>*@ المجموعة
+                <select readonly asp-for="CommunityId" class="form-control" asp-items="ViewBag.CommunityId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input type="text" placeholder="الرجاء كتابة عنوان الموضوع الخاص بهذه المجموعة" asp-for="Title" class="form-control form-control-inline" />
+                @*<small id="emailHelp" class="form-text text-muted">ماهو التحليل الاحصائي المستخدم في ....؟</small>*@
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+          
+
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <a title="اضافة صورة" id="showimagediv"><span class="glyphicon glyphicon-picture"></span></a>
+                <a title="اضافة ملف" id="showfilediv"><span class="glyphicon glyphicon-file"></span></a>
+
+                <div id="imagediv" class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input type="file" name="myfile" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" class="form-control-file" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                    <input asp-for="Image" id="fileinput" class="form-control" />
+                </div>
+
+                <div id="filediv" class="form-group">
+                    <label asp-for="File" class="control-label"></label>
+                    <input type="file" name="myfile1" id="file1" accept=".pdf,.doc,.docx,.xls,.txt,.ppt,.pptx" class="btn btn-default" />
+                    <span asp-validation-for="File" class="text-danger"></span>
+                    <input asp-for="File" id="fileinput1" class="form-control" />
+                </div>
+                @Html.TextAreaFor(model => model.Body, new { rows = 10, cols = 50, @class = "form-control", @maxlength = "10000" })
+                @Html.ValidationMessageFor(m => m.Body, "", new { @class = "text-danger" })
+
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" class="form-control" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="اضافة" class="btn btn-success" />
+            </div>
+        </form>
+        <a asp-action="GroupIndex" asp-controller="Communities" class="btn btn-default">الرجوع الى المجاميع البحثية</a>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        function onAdditionalData() {
+            return {
+                text: $("#Tags").val()
+            };
+        }
+    </script>
+
+    <script type="text/javascript">
+        $("#imagediv").hide();
+        $("#showimagediv").click(function () {
+            $("#imagediv").slideToggle();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#filediv").hide();
+        $("#showfilediv").click(function () {
+            $("#filediv").slideToggle();
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#testdiv").hide();
+            $('#chkStatus').change(function () {
+                if ($('#chkStatus').is(':checked'))
+                    $("#testdiv").fadeIn();
+                else
+                    $('#testdiv').fadeOut();
+            });
+        });
+
+        $(function () {
+            var $cb = $('#checkboxId');
+            $('#dropdownlistId').change(function () {
+                if (this.value == '2') {
+                    $cb.prop('disabled', true);
+                } else {
+                    $cb.prop('disabled', false);
+                }
+            }).trigger('change');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#file").change(function () {
+                if ($("#file").val() != "") {
+                    $("#fileinput").prop("value", $("#file").val().split('\\').pop());
+
+                    //to show new image at a time of image selected from file input type
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) { $('#img1').attr('src', e.target.result); }
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#file1").change(function () {
+                if ($("#file1").val() != "") {
+                    $("#fileinput1").prop("value", $("#file1").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            content_style: "div, p {font-size: 18px;}",
+            directionality: 'rtl',
+            //language: 'ar_SA',
+            //plugins: "link,image,media,table",
+
+            //menubar: "insert",
+            //toolbar: "link,image,media,table",
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: true,
+            toolbar: false,
+            menubar: false,
+            mode: "textareas"
+            //plugins: "table,contextmenu,paste,-externalplugin"
+        });
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

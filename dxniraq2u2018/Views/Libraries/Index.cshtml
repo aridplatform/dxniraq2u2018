@@ -1,0 +1,72 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Library>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>فهرس المكتبة الخاصة</h2>
+
+<p>
+    <a asp-action="Create">رفع ملف جديد</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileType)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+
+                <td>
+
+                    @if (item.FileType == 0)
+                    {
+                        <span class="glyphicon glyphicon-picture"></span>
+                    }
+
+                    @if (item.FileType == 1)
+                    {
+                        <span class="glyphicon glyphicon-file"></span>
+                    }
+
+                    @if (item.FileType == 2)
+                    {
+                        <span class="glyphicon glyphicon-facetime-video"></span>
+                    }
+
+
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+
+                    <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,83 @@
+﻿@model dxniraq2u2018.Models.Library
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>Library</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FileName" class="control-label"></label>
+                <input asp-for="FileName" class="form-control" />
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea rows="4" cols="50" asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FileType" class="control-label"></label>
+                <select asp-for="FileType" class="form-control"
+                        asp-items="Html.GetEnumSelectList<dxniraq2u2018.Models.Common.FileTypes>()">
+                    <option disabled selected value="">حدد نوع الملف</option>
+                </select>
+                <span asp-validation-for="FileType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UrlPath" class="control-label"></label>
+                @if (Model.FileType == 0)
+                {
+                    <img src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.FileFolder + "/" + Model.UrlPath  )" />
+                    <p>https://dxniraq2u.com/files/@Url.Content(Model.UrlPath)</p>
+                }
+                else
+                {
+                    <p>https://dxniraq2u.com/files/@Url.Content(Model.UrlPath)</p>
+                }
+                <input type="file" name="myfile" id="file" accept=".png,.jpg,.jpeg,.gif,.tif,.pdf,.ppt,.doc,.docx,.mp3,.mp4" class="btn btn-default" />
+                <input asp-for="UrlPath" name="fileinput" id="fileinput" class="form-control" readonly />
+                <span asp-validation-for="UrlPath" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        $(document).ready(function () {
+            $("#file").change(function () {
+                if ($("#file").val() != "") {
+                    $("#fileinput").prop("value", $("#file").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+}

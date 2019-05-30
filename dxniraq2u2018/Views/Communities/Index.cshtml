@@ -1,0 +1,79 @@
+﻿@model dxniraq2u2018.Models.CommunityViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{ ApplicationUser currentUser = await UserManager.GetUserAsync(User); }
+
+<h2>المجتمعات العلمية |  <span class="glyphicon glyphicon-stats"></span> <a asp-controller="ScoreLogs" title="نقاط التفاعل مع المجتمعات العلمية الخاص بكم" asp-action="Index">درجة التفاعل : @ViewData["CommunityScore"]</a>  </h2>
+    <p>
+        <a asp-action="Create">انشاء مجتمع جديد</a>
+    </p>
+
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Community.Logo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Community.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Community.ShortName)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Community.Speciality)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Community.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FollowersCount)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PostsCount)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Communities)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Logo)*@
+                    <img class="img-rounded" src="@Url.Content("~/" + @dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Logo)" width="50" height="50" />
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">  @Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShortName)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Speciality.Name)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+
+                <td>
+                    @Model.CommunityFollower.Where(a => a.CommunityId == item.Id).Count()
+                </td>
+
+                <td>@Model.Posts.Where(a => a.CommunityId == item.Id).Count()</td>
+
+                <td>
+                    @if (User.IsInRole("Admins"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

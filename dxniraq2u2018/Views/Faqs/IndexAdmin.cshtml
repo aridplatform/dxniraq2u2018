@@ -1,0 +1,47 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Faq>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewData["FaqCategoryName"] | ادارة الاسئلة المتكررة</h2>
+
+<p>
+
+    <a asp-action="Create" asp-route-fid="@ViewData["fid"]">اضف سؤال جديد</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Question)
+                </th>
+               
+              
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
+            </td>
+          
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">تفاصيل</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

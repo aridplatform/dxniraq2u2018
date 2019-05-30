@@ -1,0 +1,159 @@
+﻿@model dxniraq2u2018.Models.Invoice
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>تحرير الوصل</h2>
+
+<h4>Invoice # @Html.DisplayFor(model => model.Id)</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserId" class="control-label"></label>
+                <select readonly asp-for="ApplicationUserId" class="form-control" asp-items="ViewBag.ApplicationUserId"></select>
+                <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="PaymentStatus" /> @Html.DisplayNameFor(model => model.PaymentStatus)
+                    </label>
+                </div>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="PaymentMethodId" class="control-label"></label>
+                    <select asp-for="PaymentMethodId" class="form-control" asp-items="ViewBag.PaymentMethodId"></select>
+                    <span asp-validation-for="PaymentMethodId" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                    <label asp-for="PaymentMethodReference" class="control-label"></label>
+                    <input asp-for="PaymentMethodReference" class="form-control" />
+                    <span asp-validation-for="PaymentMethodReference" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                    <label asp-for="AccountantId" class="control-label"></label>
+                    <select asp-for="AccountantId" class="form-control" asp-items="ViewBag.AccountantId"></select>
+                    <span asp-validation-for="AccountantId" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="IssuingDate" class="control-label"></label>
+                <input readonly asp-for="IssuingDate" class="form-control" />
+                <span asp-validation-for="IssuingDate" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="PaidDate" class="control-label"></label>
+                <input asp-for="PaidDate" class="form-control" />
+                <span asp-validation-for="PaidDate" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                    <label asp-for="DriverId" class="control-label"></label>
+                    <select asp-for="DriverId" class="form-control" asp-items="ViewBag.DriverId"></select>
+                    <span asp-validation-for="DriverId" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="DeliveredDate" class="control-label"></label>
+                <input asp-for="DeliveredDate" class="form-control" />
+                <span asp-validation-for="DeliveredDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input checked asp-for="IsCalled" /> @Html.DisplayNameFor(model => model.IsCalled)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsloggedToDxnSystem" /> @Html.DisplayNameFor(model => model.IsloggedToDxnSystem)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SystemTrackNo" class="control-label"></label>
+                <input asp-for="SystemTrackNo" class="form-control" />
+                <span asp-validation-for="SystemTrackNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressId" class="control-label"></label>
+                <select asp-for="AddressId" class="form-control" asp-items="ViewBag.AddressId"></select>
+                <span asp-validation-for="AddressId" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="BranchId" class="control-label"></label>
+                    <select asp-for="BranchId" class="form-control" asp-items="ViewBag.BranchId"></select>
+                    <span asp-validation-for="BranchId" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                <label asp-for="CustomerSatisfaction" class="control-label"></label>
+                <select asp-for="CustomerSatisfaction" class="form-control"
+                        asp-items="Html.GetEnumSelectList<dxniraq2u2018.Models.Common.Rating>()"></select>
+                <span asp-validation-for="CustomerSatisfaction" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ReceivedByName" class="control-label"></label>
+                <input asp-for="ReceivedByName" class="form-control" />
+                <span asp-validation-for="ReceivedByName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceivedByMobile" class="control-label"></label>
+                <input asp-for="ReceivedByMobile" class="form-control" />
+                <span asp-validation-for="ReceivedByMobile" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="ReceivedByRelationshipId" class="control-label"></label>
+                                                <select asp-for="ReceivedByRelationshipId" class="form-control"
+                        asp-items="Html.GetEnumSelectList<dxniraq2u2018.Models.Common.ReceivedByRelationship>()"></select>
+
+                <span asp-validation-for="ReceivedByRelationshipId" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <label asp-for="InvoicePDF" class="control-label"></label>
+                <a target="_blank" href="https://www.ilovepdf.com/merge_pdf">دمج ملفات PDF</a>
+
+                @if ((Model.InvoicePDF) != null)
+                {<a target="_parent" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.FileFolder + "/" + Model.InvoicePDF)">الفاتورة</a>}
+
+                <input type="file" name="myfile" id="file" accept=".png,.jpg,.jpeg,.gif,.tif,.pdf" class="btn btn-default" />
+
+                <input asp-for="InvoicePDF" class="form-control" disabled />
+                @*name="fileinput" id="fileinput"*@
+                <span asp-validation-for="InvoicePDF" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $("#file").change(function () {
+                if ($("#file").val() != "") {
+                    $("#fileinput").prop("value", $("#file").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,46 @@
+﻿@model dxniraq2u2018.Models.Invoice
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف الوصل</h2>
+
+<h3>هل أنت متاكد من رغبتكم لحذف الوصل بشكل نهائي؟</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaymentStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IssuingDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IssuingDate)
+        </dd>
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address.ContactPersonName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="حذف" class="btn btn-default" /> |
+        <a asp-action="Index">العودة الى قائمة الوصولات</a>
+    </form>
+</div>

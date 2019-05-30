@@ -1,0 +1,57 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Ticket>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>تذاكر الدعم الفني</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+                        <th>
+                @Html.DisplayNameFor(model => model.TicketOpenDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+                        <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th>
+                        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-controller="TicketReplies" asp-action="Index" asp-route-tid="@item.Id">
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </a>
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketOpenDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+
+            <td>
+                <a asp-controller="ApplicationUsers" asp-action="Edit" asp-route-Id="@item.ApplicationUserId">@Html.DisplayFor(modelItem => item.ApplicationUser.ArName)</a>  
+            </td>
+
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">تفاصيل</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">حذف</a> |*@
+                @*<a asp-controller="TicketReplies" asp-action="Create" asp-route-tid="@item.Id">اضف رد</a> |*@
+                @*<a asp-controller="TicketReplies" asp-action="Index" asp-route-tid="@item.Id">تفاصيل</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

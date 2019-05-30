@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <environment include="Development,Staging,Production">
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-rtl.css" />
+
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+
+
+
+
+
+    @*<environment exclude="Development">
+            <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>*@
+    <link rel="manifest" href="/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                appId: "0e742764-f0ac-4dd3-8b6e-f19e439f0cb1",
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="font-family:Calibri, Calibri;font-size:large;font-synthesis:weight">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Control" class="navbar-brand">
+                        <img src="~/images/dxn_logo.png" />
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                    <ul class="nav navbar-nav">
+
+                        <li class="dPopdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                التسوق الالكتروني<span class="caPet"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li> <a asp-area="" asp-controller="CategoryProducts" asp-action="Index"><span class="glyphicon glyphicon-equalizer"></span> المنتجات</a></li>
+                                <li><a asp-area="" asp-controller="ShoppingCartItems" asp-action="Index"><span class="glyphicon glyphicon-shopping-cart"></span> سلة التسوق</a></li>
+                                <li><a asp-area="" asp-controller="Addresses" asp-action="Index"><span class="glyphicon glyphicon-home"></span> العناوين</a></li>
+                                <li><a asp-area="" asp-controller="Invoices" asp-action="Index"><span class="glyphicon glyphicon-file"></span> الوصولات</a></li>
+                                @*<li><a asp-area="" asp-controller="Trackings" asp-action="Index"><span class="glyphicon glyphicon-road"></span> متابعة الشحنات</a></li>*@
+                                @*<li><a asp-area="" asp-controller="Statements" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> كشف الحساب</a></li>*@
+                            </ul>
+                        </li>
+
+                        <li><a asp-area="" asp-controller="Branches" asp-action="Index"> <span class="glyphicon glyphicon-equalizer"></span> الفروع</a></li>
+                        <li><a asp-area="" asp-controller="Lectures" asp-action="Index"><span class="glyphicon glyphicon-calendar"></span> المحاضرات</a></li>
+
+                        <li class="dPopdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-duplicate"></span>
+                                الشهادات<span class="caPet"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                @*<li><a asp-area="" asp-controller="BlogPosts" asp-action="SectionLists" asp-route-id="1002"><span class="glyphicon glyphicon-user"></span> الشهادات الصحية</a></li>*@
+                                <li><a asp-area="" asp-controller="BlogPosts" asp-action="PostsLists" asp-route-id="1007"><span class="glyphicon glyphicon-usd"></span> الشهادات المالية</a></li>
+                                <li><a asp-area="" asp-controller="BlogPosts" asp-action="PostsLists" asp-route-id="1008"><span class="glyphicon glyphicon-certificate"></span> شهادات الشركة</a></li>
+                                <li><a asp-area="" asp-controller="BlogPosts" asp-action="PostsLists" asp-route-id="1003"><span class="glyphicon glyphicon-thumbs-up"></span> قصص نجاح</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li class="dPopdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-book"></span>
+                                المدونة<span class="caPet"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a asp-area="" asp-controller="Blogs" asp-action="Index"> ادارة المدونة</a></li>
+                                <li><a asp-area="" asp-controller="Blogs" asp-action="List">عرض المدونات</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dPopdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-education"></span>
+                                المكتبة<span class="caPet"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a asp-area="" asp-controller="BlogPosts" asp-action="PostsLists" asp-route-id="1004"><span class="glyphicon glyphicon-book"></span> كتب</a></li>
+                                <li><a asp-area="" asp-controller="BlogPosts" asp-action="SectionLists" asp-route-id="6"><span class="glyphicon glyphicon-facetime-video"></span> المكتبة المرئية</a></li>
+                                <li><a asp-area="" asp-controller="BlogPosts" asp-action="PostsLists" asp-route-id="1010"><span class="glyphicon glyphicon-play"></span> المكتبة الصوتية</a></li>
+                                <li><a asp-area="" asp-controller="BlogPosts" asp-action="PostsLists" asp-route-id="1011"><span class="	glyphicon glyphicon-briefcase"></span> البحوث العلمية</a></li>
+                                <li><a asp-area="" asp-controller="Galleries" asp-action="Index"><span class="glyphicon glyphicon-picture"></span> البومات الصور</a></li>
+                                <li><a asp-area="" asp-controller="FaqCategories" asp-action="Index"><span class="glyphicon glyphicon-text-size"></span> الاسئلة المتكررة</a></li>
+                                @*<li><a href="https://www.facebook.com/pg/dxniraq2u/photos/?tab=album&album_id=156714728254392" target="_blank"><span class="glyphicon glyphicon-picture"></span> البوم الصور</a></li>*@
+                            </ul>
+                        </li>
+                        <li><a asp-area="" asp-controller="BlogPosts" asp-action="SectionLists" asp-route-Id="1"><span class="glyphicon glyphicon-globe"></span> الاخبار</a></li>
+                        <li><a asp-area="" asp-controller="Tickets" asp-action="Index"><span class="glyphicon glyphicon-envelope"></span> تذاكر الدعم</a></li>
+                        <li>
+                            <a asp-area="" asp-controller="ShoppingCartItems" asp-action="Index" class="btn btn-info btn-lg">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> سلة التسوق
+                            </a>
+                        </li>
+
+                        @*@if (await UserManager.IsInRoleAsync(currentUser, RoleName.Admins))
+        {
+
+
+
+        }*@
+
+                        @if (User.IsInRole("Admins"))
+                        {
+                            <li class="dPopdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-dashboard"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-area="" asp-controller="Tickets" asp-action="List">تذاكر الدعم الفني</a></li>
+                                    @*<li><a asp-area="" asp-controller="RegisterIntentions" asp-action="Index">المسجلون على المؤتمر</a></li>*@
+                                    <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="Index">الاعضاء</a></li>
+                                    <li><a asp-area="" asp-controller="MemberTypes" asp-action="Index">رتب الاعضاء</a></li>
+                                    <li><a asp-area="" asp-controller="RoleAdmin" asp-action="Index">الصلاحيات</a></li>
+                                    <li><a asp-area="" asp-controller="Addresses" asp-action="Index">العناوين</a></li>
+
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Cities" asp-action="Index">المدن</a></li>
+                                    <li><a asp-area="" asp-controller="Statements" asp-action="Index">كشف الحساب</a></li>
+                                    @*<li><a asp-area="" asp-controller="Attendances" asp-action="Index">تسجيل حضور</a></li>*@
+                                    <li><a asp-area="" asp-controller="Testimonials" asp-action="Index">شهادات الاعضاء </a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="CategoryProducts" asp-action="Index">الاقسام</a></li>
+                                    <li><a asp-area="" asp-controller="Products" asp-action="Index">المنتجات</a></li>
+                                    <li><a asp-area="" asp-controller="Invoices" asp-action="IndexAdmin">الوصولات</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="ShoppingCartItems" asp-action="Index">سلة التسوق</a></li>
+                                    @*<li><a asp-area="" asp-controller="Trackings" asp-action="Index">التتبع</a></li>
+                    <li><a asp-area="" asp-controller="PaymentMethods" asp-action="Index">طرق الدفع</a></li>
+                    <li><a asp-area="" asp-controller="InvoiceItems" asp-action="Index">محتوى الوصل</a></li>*@
+                                    <li class="divider"></li>
+                                    <li><a href="#">-- المدونة --</a></li>
+                                    <li><a asp-area="" asp-controller="BlogSections" asp-action="Index">الاقسام الرئيسية</a></li>
+                                    <li><a asp-area="" asp-controller="BlogCategories" asp-action="Index">الاقسام الفرعية</a></li>
+                                    <li><a asp-area="" asp-controller="BlogPosts" asp-action="Index">مواضيع المدونة</a></li>
+                                    <li><a asp-area="" asp-controller="BlogAlbums" asp-action="Index">ألبوم صور المدونة</a></li>
+                                    <li><a asp-area="" asp-controller="Libraries" asp-action="Index">قسم الرفع</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Pages" asp-action="Index">الصفحات</a></li>
+                                    <li><a asp-area="" asp-controller="Comments" asp-action="Index">التعليقات</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Lectures" asp-action="Index">محاضرات تمت الموافقة عليها</a></li>
+                                    <li><a asp-area="" asp-controller="Lectures" asp-action="IndexAdmin">محاضرات قيد الموافقة</a></li>
+                                    @*<li><a asp-area="" asp-controller="Lectures" asp-action="Create">اضف دورة</a></li>*@
+                                    @*<li><a asp-area="" asp-controller="StoreLogs" asp-action="Index">كشوفات المخازن</a></li>*@
+
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Branches" asp-action="Create">الفروع</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Galleries" asp-action="Index">ألبوم الوصور</a></li>
+
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="FaqCategories" asp-action="Index"> الاسئلة المتكررة</a></li>
+
+                                    @*<li><a asp-area="" asp-controller="BranchAdvertismentScreenks" asp-action="Index">شاشات العرض</a></li>*@
+
+                                </ul>
+                            </li>
+                        }
+
+
+
+                        @*<li><a asp-area="" asp-controller="Home" asp-action="Index">الرئيسة</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="About">حول</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Contact">اتصل بنا</a></li>*@
+
+                        @*<li class="dPopdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                الاعضاء<span class="caPet"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="Index">الاعضاء</a></li>
+                <li><a asp-area="" asp-controller="MemberTypes" asp-action="Index">رتب الاعضاء</a></li>
+                <li><a asp-area="" asp-controller="Addresses" asp-action="Index">العناوين</a></li>
+                <li><a asp-area="" asp-controller="Cities" asp-action="Index">المدن</a></li>
+                <li><a asp-area="" asp-controller="Statements" asp-action="Index">كشف الحساب</a></li>
+                <li><a asp-area="" asp-controller="Attendances" asp-action="Index">تسجيل حضور</a></li>
+                <li><a asp-area="" asp-controller="Testimonials" asp-action="Index">شهادات الاعضاء </a></li>
+
+
+
+            </ul>
+        </li>*@
+
+                        @*<li class="dPopdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                المنتجات<span class="caPet"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a asp-area="" asp-controller="CategoryProducts" asp-action="Index">الاقسام</a></li>
+                <li><a asp-area="" asp-controller="Products" asp-action="Index">المنتجات</a></li>
+            </ul>
+        </li>*@
+
+                        @*<li class="dPopdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                نظام المبيعات<span class="caPet"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a asp-area="" asp-controller="Invoices" asp-action="Index">الوصولات</a></li>
+                <li><a asp-area="" asp-controller="ShoppingCartItems" asp-action="Index">سلة التسوق</a></li>
+                <li><a asp-area="" asp-controller="Trackings" asp-action="Index">التتبع</a></li>
+                <li><a asp-area="" asp-controller="PaymentMethods" asp-action="Index">طرق الدفع</a></li>
+                <li><a asp-area="" asp-controller="InvoiceItems" asp-action="Index">محتوى الوصل</a></li>
+            </ul>
+        </li>*@
+
+
+                        @*<li><a asp-area="" asp-controller="Branches" asp-action="Index">الفروع</a></li>
+        <li><a asp-area="" asp-controller="Lectures" asp-action="Index">الدورات</a></li>
+        <li><a asp-area="" asp-controller="StoreLogs" asp-action="Index">كشوفات المخازن</a></li>*@
+
+
+                        @*<li class="dPopdown">
+                @if (SignInManager.IsSignedIn(User))
+            {
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    الملف الشخصي<span class="caPet"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a asp-area="" asp-controller="Manage" asp-action="Index">الحساب</a></li>
+                    <li><a href="#" target="_blank">اسم القائمة</a></li>
+                    <li class="divider"></li>
+                </ul>
+        }
+            </li>*@
+
+
+
+                        @*<li class="dPopdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                المدونة<span class="caPet"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a asp-area="" asp-controller="BlogCategories" asp-action="Index">اقسام المدونة</a></li>
+                <li><a asp-area="" asp-controller="BlogPosts" asp-action="Index">مواضيع المدونة</a></li>
+                <li><a asp-area="" asp-controller="Pages" asp-action="Index">الصفحات</a></li>
+                <li><a asp-area="" asp-controller="Comments" asp-action="Index">التعليقات</a></li>
+                               <li><a asp-area="" asp-controller="Lectures" asp-action="Index">الدورات</a></li>
+        <li><a asp-area="" asp-controller="StoreLogs" asp-action="Index">كشوفات المخازن</a></li>
+            </ul>
+        </li>*@
+                    </ul>
+
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav">
+                            <li> <a asp-area="" asp-controller="CategoryProducts" asp-action="Index"><span class="glyphicon glyphicon-equalizer"></span> المنتجات</a></li>
+                            <li><a asp-area="" asp-controller="Branches" asp-action="Index"> <span class="glyphicon glyphicon-equalizer"></span> الفروع</a></li>
+                            <li><a asp-area="" asp-controller="Lectures" asp-action="ViewAll"><span class="glyphicon glyphicon-calendar"></span> المحاضرات</a></li>
+                            <li><a asp-area="" asp-controller="BlogPosts" asp-action="SectionLists" asp-route-Id="1"><span class="glyphicon glyphicon-globe"></span> الاخبار</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Contact"><span class="glyphicon glyphicon-envelope"></span> اتصل بنا</a></li>
+                        </ul>
+                    }
+
+
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2019 - DXN</p>
+            </footer>
+        </div>
+
+        <environment include="Development,Staging,Production">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+        </environment>
+
+
+        @*<environment exclude="Development">
+                <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                        asp-fallback-test="window.jQuery"
+                        crossorigin="anonymous"
+                        integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+
+                </script>
+                <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                        asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                        asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                        crossorigin="anonymous"
+                        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+                </script>
+                <script src="~/js/site.min.js" asp-append-version="true"></script>
+            </environment>*@
+
+        <!--Start of Tawk.to Script-->
+        @*Causing problem with horizontal scroll*@
+        @*<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5b4df1e49b988800110dbf2f&product=social-ab' async='async'></script>*@
+
+        <div id="fb-root"></div>
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=428211314266783&autoLogAppEvents=1';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/5b4ddf1391379020b95ef059/default';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+        <!--End of Tawk.to Script-->
+
+        @RenderSection("Scripts", required: false)
+    </div>
+</body>
+</html>

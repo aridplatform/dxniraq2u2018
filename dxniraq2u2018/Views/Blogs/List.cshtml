@@ -1,0 +1,53 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Community>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{ ApplicationUser currentUser = await UserManager.GetUserAsync(User); }
+
+@{
+    ViewData["Title"] = "List";
+}
+<h2>مدونات الاعضاء</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortName)
+            </th>
+            @*<th>عدد المواضيع</th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <a asp-action="Index" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortName)
+            </td>
+            @*<td>@Model.Posts.Where(a => a.CommunityId == item.Id).Count()</td>*@
+            <td>
+                <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-Id="@item.ApplicationUserId"> @Html.DisplayFor(modelItem => item.ApplicationUser.ArName)</a>
+            </td>
+           
+            <td>
+                @if (User.IsInRole("Admins"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span></a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

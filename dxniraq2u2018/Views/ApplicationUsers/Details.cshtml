@@ -1,0 +1,69 @@
+﻿@model dxniraq2u2018.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.ArName)</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EnName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EnName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DxnId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DxnId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileImage)
+        </dt>
+        <dd>
+            @*@Html.DisplayFor(model => model.ProfileImage)*@
+            <img src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.ProfileImage  )" width="150" height="90" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.City.ArCityName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MemberType.NameEng)
+        </dd>
+    </dl>
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    @*<a asp-action="Index">العودة</a>*@
+</div>

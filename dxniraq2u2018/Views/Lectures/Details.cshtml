@@ -1,0 +1,73 @@
+﻿@model dxniraq2u2018.Models.Lecture
+
+@{
+    ViewData["Title"] = "تفاصيل المحاضرة";
+}
+
+
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Title)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+       
+      
+        <dd>
+            @Html.Raw(Model.Content)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.ArName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Seats)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Seats)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOpen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsOpen)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LevelType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOnline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsOnline)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.IsAdminApproved)
+        </dt>*@
+        @*<dd>
+            @Html.DisplayFor(model => model.IsAdminApproved)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Branch.Name)
+            <br />
+            @Html.DisplayFor(model => model.Branch.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    <a asp-action="Index">العودة الى قائمة المحاضرات</a>
+</div>

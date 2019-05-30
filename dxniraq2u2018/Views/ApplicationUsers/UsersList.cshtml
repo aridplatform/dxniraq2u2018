@@ -1,0 +1,96 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "عرض المستخدمين";
+}
+
+<h2>الاعضاء</h2>
+
+@*<p>
+        <a asp-action="Create">Crew</a>
+    </p>*@
+<table class="table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DxnId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+
+            @*<th>
+                @Html.DisplayNameFor(model => model.Branch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberType)
+            </th>*@
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnName)
+                </td>
+
+                <td>
+                    @if (item.DxnId == null)
+                    {<a asp-action="UpdateDXN" asp-route-id="@item.Id">تحديث</a>}
+
+                    @Html.DisplayFor(modelItem => item.DxnId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Branch.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.ArCityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberType.NameEng)
+                </td>*@
+
+                <td>
+                    @if (item.ProfileImage != null) { 
+                    <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.ProfileImage)" width="100" height="100" />
+                    }
+                </td>
+
+                @*<td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+                   
+                   
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

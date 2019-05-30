@@ -1,0 +1,359 @@
+﻿@model dxniraq2u2018.Models.PostViewModel
+@{
+    ViewData["Title"] = Html.DisplayFor(model => model.Post.Title);
+}
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<div style="top:10px;background-color:white">
+    <h2 style="padding:10px">
+        @switch (Model.Post.Community.CommunityType)
+        {
+            case dxniraq2u2018.Models.Common.CommunityType.Personal:
+                <a asp-controller="Blogs" asp-action="Index" asp-route-id="@Model.Post.CommunityId">@Html.DisplayFor(model => model.Post.Community.Name)</a>
+                break;
+            case dxniraq2u2018.Models.Common.CommunityType.Community:
+                <a asp-controller="Communities" asp-action="Details" asp-route-id="@Model.Post.CommunityId">@Html.DisplayFor(model => model.Post.Community.Name)</a>
+                break;
+            case dxniraq2u2018.Models.Common.CommunityType.Group:
+                <a asp-controller="Groups" asp-action="GroupDetails" asp-route-id="@Model.Post.CommunityId">@Html.DisplayFor(model => model.Post.Community.Name)</a>
+                break;
+        }
+    </h2>
+    <h3>
+        @Html.DisplayFor(model => model.Post.Title)
+    </h3>
+    @{
+        ApplicationUser currentUser = null;
+        currentUser = await UserManager.GetUserAsync(User);
+        if (SignInManager.IsSignedIn(User))
+        {
+            if (Model.Post.ApplicationUserId == currentUser.Id)
+            {
+                <a title="تحرير" asp-action="EditBlog" asp-route-id="@Model.Post.Id"><span class="glyphicon glyphicon-edit"></span></a> <a title="حذف" asp-action="Delete" asp-route-id="@Model.Post.Id"><span class="glyphicon glyphicon-trash"></span></a>
+            }
+        }
+    }
+
+    @{
+
+        if (SignInManager.IsSignedIn(User) && Model.Post.Community.CommunityType == dxniraq2u2018.Models.Common.CommunityType.Community)
+        {
+
+
+            if (Model.PostMetrics.Where(f => f.PostId == Model.Post.Id && f.ApplicationUserId == currentUser.Id && f.NotifyMe == true).Count() > 0)
+            {
+                <a id="followbtn" class="btn btn-default">الغاء المتابعة</a>
+            }
+            else
+            {
+                <a id="followbtn" class="btn btn-success">متابعة</a>
+            }
+        }
+    }
+
+    <div class="col-md-8" style="background-color:white">
+
+        @if (Model.Post.Image != null && Model.Post.Community.CommunityType == dxniraq2u2018.Models.Common.CommunityType.Group)
+        {
+            <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Post.Image)" onerror="this.onerror=null;this.src='https://dxniraq2u.com/images/logo.png';" />
+        }
+
+        @if (Model.Post.Image != null && Model.Post.Community.CommunityType != dxniraq2u2018.Models.Common.CommunityType.Group)
+        {
+            <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Post.Image)" onerror="this.onerror=null;this.src='https://dxniraq2u.com/images/logo.png';" />
+        }
+        <br /><br />
+        @Html.Raw(Model.Post.Body)
+        <br /><br />
+        @{
+            var elements = Model.Post.Tags.Split(new[]
+            { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
+            foreach (string items in elements)
+            {
+                <span class="badge badge-secondary">@items</span>
+            }
+        }
+        <br />
+        <br />
+        @{
+            if (SignInManager.IsSignedIn(User) && Model.Post.Community.CommunityType != dxniraq2u2018.Models.Common.CommunityType.Group)
+            {
+
+
+                currentUser = await UserManager.GetUserAsync(User);
+                //if (Model.PostMetrics.Where(f => f.PostId == Model.Post.Id && f.ApplicationUserId == currentUser.Id && f.VoteValue > 0).Count() > 0)
+                //{
+                @*<a id="followbtn" class="btn btn-default" style="color:black;font-weight:800">@Localizer["Unfollow"]</a>*@
+                <a id="upbtn" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                <span id="counter">  @ViewData["PostWeight"]</span>
+                <a id="downbtn" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                //}
+            }
+        }
+
+    </div>
+    <div style="top:10px;background-color:white" class="col-md-4">
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Post.DateTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Post.DateTime)
+            </dd>
+            @if (Model.Post.File != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Post.File)
+                </dt>
+
+                <dd>
+                    @if (Model.Post.Community.CommunityType == dxniraq2u2018.Models.Common.CommunityType.Group)
+                    {
+                        <a target="_blank" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.FileFolder + "/" + Model.Post.File)">الملف المرفق</a>
+                    }
+                    else
+                    { <a target="_blank" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.FileFolder + "/" + Model.Post.File)">الملف المرفق</a>}
+                </dd>
+            }
+            <dt>
+                @Html.DisplayNameFor(model => model.Post.Reads)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Post.Reads)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Post.ApplicationUser)
+            </dt>
+            <dd>
+                <img title="@Html.Raw(Model.Post.ApplicationUser.ArName)" width="80px" class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Post.ApplicationUser.ProfileImage)" />
+                <p><a target="_blank" asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.Post.ApplicationUserId">  @Html.DisplayFor(model => model.Post.ApplicationUser.ArName)</a></p>
+            </dd>
+        </dl>
+    </div>
+    @*<img class="img-rounded" src="@Url.Content("~/" + @ARID.Properties.Resources.Community + "/" + Model.Post.Image)" />*@
+    <br />
+    @if (Model.Post.IsCommentsAllowed == true)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <h3 style="padding:10px">التعليقات</h3>
+                @*<a target="_blank" asp-controller="PostComments" asp-action="Create" asp-route-id="@Model.Post.Id">تعليق جديد</a>*@
+                <table class="table-hover table table-striped table-bordered dt-responsive">
+                    <tbody>
+                        @foreach (var item in Model.PostComments)
+                        {
+                            if (item.IsBestAnswer == true)
+                            { ViewData["GreenClass"] = "background-color:#d4e4bb"; }
+                            else
+                            { ViewData["GreenClass"] = ""; }
+
+                            <tr style="@ViewData["GreenClass"]">
+                                <td>
+                                    @Html.Raw(item.Comment)
+
+                                    @if (item.IsBestAnswer == true)
+                                    {
+                                        <a title="أفضل جواب" id="@item.Id" href="#" class="btn-sm btn-success btn-best"><span class="glyphicon glyphicon-ok"></span></a>
+                                    }
+
+                                    @if (ViewData["Answered"] != "AnswerAssigned")
+                                    {
+
+                                        if (SignInManager.IsSignedIn(User))
+                                        {
+                                            @if (currentUser.Id == item.Post.ApplicationUserId && item.Post.Community.CommunityType == dxniraq2u2018.Models.Common.CommunityType.Community)
+                                            {
+                                                <a title="تعيين كأفضل جواب لسؤالي" id="@item.Id" href="#" class="btn-sm btn-default btn-best"><span class="glyphicon glyphicon-ok"></span></a>
+                                            }
+                                        }
+                                    }
+                                    @*@if (SignInManager.IsSignedIn(User))
+                                        {
+                                            @if (currentUser.Id == item.Post.ApplicationUserId)
+                                            {
+                                                <a title="تعيين كأفضل جواب لسؤالي" id="@item.Id" href="#" class="btn-sm btn-default btn-best"><span class="glyphicon glyphicon-ok"></span></a>
+                                            }
+                                        }*@
+
+
+                                    @*@Html.DisplayFor(modelItem => item.DateTime)*@
+                                </td>
+                                <td>
+                                    <a title="@Html.Raw(item.File)" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.File)">@Html.DisplayFor(modelitem => item.File)</a>
+
+                                </td>
+                                <td>
+                                    <img title="@Html.Raw(item.ApplicationUser.ArName)" width="50px" class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.ApplicationUser.ProfileImage)" />
+                                    <br />
+                                    <a target="_blank" asp-route-id="@item.ApplicationUserId" asp-action="Details" asp-controller="ApplicationUsers">@Html.Raw(item.ApplicationUser.ArName)</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <h3 style="padding:10px">ساهم باثراء المنشور</h3>
+                            <form asp-action="CreateComment">
+                                <input hidden asp-for="PostId" value="@Model.Post.Id" />
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div style="padding:10px" class="form-group">
+                                    @*@Html.TextAreaFor(model => model.PostComment.Comment, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.TextAreaFor(model => model.PostComment.Comment, new { rows = 5, cols = 20 })
+                                </div>
+                                <div style="padding:10px" class="form-group ">
+                                    @*<a asp-action="Index" class="btn btn-default">Back to List</a>*@
+                                    <input type="submit" value="تعليق" class="btn btn-success" />
+                                </div>
+                            </form>
+                        }
+                        else
+                        { <h3 style="padding:10px">يجب تسجيل الدخول للمشاركة في اثراء الموضوع</h3>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            directionality: 'rtl',
+            //language: 'ar_SA',
+            plugins: "link",
+            mode: "textareas",
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: true,
+            toolbar: false,
+            menubar: false
+            //plugins: "table,contextmenu,paste,-externalplugin"
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#followbtn").click(
+                function () {
+                    if ($("#followbtn").text() == "متابعة")
+                    {
+                        var FollowOptions = {};
+                        FollowOptions.url = "/Posts/Follow/";
+                        //FollowOptions.url = "/ar-LY/Posts/Follow/";
+                        FollowOptions.data = { id: "@Model.Post.Id" };
+                        FollowOptions.success = function () {
+                            $("#followbtn").prop("text", "الغاء المتابعة");
+                        };
+
+                   $.ajax(FollowOptions);
+                    }
+                    else
+                    {
+                        var FollowOptions = {};
+                        FollowOptions.url = "/Posts/Unfollow/";
+                        FollowOptions.data = { id: "@Model.Post.Id" };
+                        FollowOptions.success = function () {
+                            $("#followbtn").prop("text", "متابعة");
+                        };
+                        $.ajax(FollowOptions);
+                    }
+                });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#upbtn").click(
+                function () {
+                       var FollowOptions = {};
+                        FollowOptions.url = "/Posts/Up/";
+                        //FollowOptions.url = "/ar-LY/Posts/Follow/";
+                        FollowOptions.data = { id: "@Model.Post.Id" };
+                      FollowOptions.success = function () {
+                    $('#counter').text(function (i, oldVal) {
+                        return parseInt(oldVal, 10) + 1;
+                                                })
+                   $("#upbtn").addClass('disabled').removeAttr("href");
+                       };
+                   $.ajax(FollowOptions);
+                  });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#downbtn").click(
+                function () {
+            var FollowOptions = {};
+                        FollowOptions.url = "/Posts/Down/";
+                        //FollowOptions.url = "/ar-LY/Posts/Follow/";
+                        FollowOptions.data = { id: "@Model.Post.Id" };
+                      FollowOptions.success = function () {
+                        $('#counter').text(function (i, oldVal) {
+                            return parseInt(oldVal, 10) - 1;
+                        })
+                     $("#downbtn").addClass('disabled').removeAttr("href");
+                    };
+                      $.ajax(FollowOptions);
+                    });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+                    $('a.btn-like').click(function (e) {
+                             e.preventDefault();
+                $(this).toggleClass("btn-success");
+                //$(e.target.id).text(parseInt($(e.target.id).text()) + 1);
+                        //$('.commentCountClass').each(function () {
+
+                        //    var currentVal = parseint($(this).text());
+                        //    var updatedVal = currentVal + 1;
+                        //    $(this).text(updatedVal);
+                        //                            });
+                                                  $.ajax({
+    url: '@Url.Action("CommentUp", "Posts")',
+    data: { id: this.id }
+    });
+    });
+    });
+    </script>
+
+    <script>
+    $(document).ready(function() {
+    $('a.btn-dislike').click(function(e) {
+        e.preventDefault();
+        $(this).toggleClass("btn-danger");
+    $.ajax({
+    url: '@Url.Action("CommentDown", "Posts")',
+    data: { id: this.id }
+    });
+    });
+    });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+                    $('a.btn-best').click(function (e) {
+                             e.preventDefault();
+                        //$(e.target.id).text(parseInt($(e.target.id).toggleClass("btn-sm btn-success btn-best")));
+                        $(this).toggleClass("btn-success");
+                                               $.ajax({
+    url: '@Url.Action("Best", "Posts")',
+    data: { id: this.id }
+                        });
+                        $('a.btn-best').toggle();
+                        $(this).toggle()
+                        //$('a.btn-best').not($(this)).hide();
+    });
+    });
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

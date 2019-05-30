@@ -1,0 +1,72 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Post>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{ ApplicationUser currentUser = await UserManager.GetUserAsync(User); }
+
+@{
+    ViewData["Title"] = ViewData["PageName"];
+}
+<h2>@ViewData["PageName"]</h2>
+@*<p>
+    <a asp-action="Create">جديد</a>
+</p>*@
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tags)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.PostType)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Community)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tags)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.PostType)
+                </td>*@
+                <td>
+                    <a target="_blank" asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.ApplicationUserId">@Html.DisplayFor(modelItem => item.ApplicationUser.ArName)</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Communities" asp-route-id="@item.CommunityId">@Html.DisplayFor(modelItem => item.Community.Name)</a>
+                </td>
+                <td>
+                    @if (User.IsInRole("Admins"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

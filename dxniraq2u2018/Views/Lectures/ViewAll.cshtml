@@ -1,0 +1,124 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Lecture>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "جدول المحاضرات";
+}
+
+<h2>جدول المحاضرات</h2>
+
+
+
+
+<table class="table ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstructorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Branch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flyer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsOpen)
+            </th>
+
+            @*<th>
+                    @Html.DisplayNameFor(model => model.LevelType)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IsOnline)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IsAdminApproved)
+                </th>*@
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Instructor.ArName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seats)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.LevelType)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsOnline)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsAdminApproved)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Branch.Name)
+                </td>
+
+                <td>
+                    @if ((item.Flyer) == null)
+                    {
+                        <p style="color:gray;">قيد التصميم</p>
+
+                    }
+
+                    else
+                    { <a target="_blank " href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Flyer)">
+                            <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Flyer)" width="50" height="50" />
+                        </a>}
+
+
+
+                </td>
+
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.IsOpen)*@
+                    @if ((item.Date) < DateTime.Now)
+                    {
+                        <p style="color:red;">مغلقة</p>
+
+                    }
+
+                    else
+                    {<a style="color:green;" asp-action="Details" asp-route-id="@item.Id">متاحة للتسجيل</a>}
+
+                </td>
+
+                <td>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

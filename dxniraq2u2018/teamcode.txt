@@ -1,0 +1,231 @@
+<section id="team" class="team">
+    <!-- Container Starts -->
+    <div class="container">
+        <!-- Main Heading Starts -->
+        <div class="text-center top-text">
+            <h1><span>√⁄÷«¡</span> «·⁄—«ﬁ</h1>
+            <h4> ⁄—¯› ⁄·Ì‰« √ﬂÀ—</h4>
+        </div>
+        <!-- Main Heading Ends -->
+        <!-- Divider Starts -->
+        <div class="divider text-center">
+            <span class="outer-line"></span>
+            <span class="fa fa-users" aria-hidden="true"></span>
+            <span class="outer-line"></span>
+        </div>
+        <!-- Divider Ends -->
+        <!-- Team Members Starts -->
+        <div class="row team-members magnific-popup-gallery">
+
+            @foreach (var Item in Model.ApplicationUser)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="team-member">
+                        <!-- Team Member Picture Starts -->
+                        <a title="@Item.EnName" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Item.ProfileImage)" data-gal="magnific-pop-up[team]" class="team-member-img-wrap"><img src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Item.ProfileImage)" height="100px" alt="@Item.EnName"></a>
+                        <!-- Team Member Picture Ends -->
+                        <!-- Team Member Details Starts -->
+                        <div class="team-member-caption social-icons">
+                            <h4>@Item.ArName</h4>
+                            <p>@Item.City.ArCityName</p>
+                            @*<ul class="list list-inline social">
+                                    <li>
+                                        <a href="#" class="fa fa-facebook"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fa fa-twitter"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fa fa-google-plus"></a>
+                                    </li>
+                                </ul>*@
+                        </div>
+                        <!-- Team Member Details Ends -->
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- Team Members Ends -->
+    </div>
+    <!-- Container Ends -->
+</section>
+
+
+-----------------------------------------------------
+
+<section id="portfolio" class="portfolio">
+    <!-- Container Starts -->
+    <div class="container">
+        <!-- Main Heading Starts -->
+        <div class="text-center top-text">
+            <h1><span>√Â„</span> «·„‰ Ã« </h1>
+            <h4>‰„«–Ã ··„‰ Ã«  «·„ Ê›—… ›Ì ›—Ê⁄ «·‘—ﬂ…</h4>
+        </div>
+        <!-- Main Heading Starts -->
+        <!-- Divider Starts -->
+        <div class="divider text-center">
+            <span class="outer-line"></span>
+            <span class="fa fa-image" aria-hidden="true"></span>
+            <span class="outer-line"></span>
+        </div>
+        <!-- Divider Ends -->
+        <!-- Filter Wrapper Starts -->
+        <nav>
+            <ul class="simplefilter nav nav-pills d-block">
+                <!-- Filter Wrapper Items Starts -->
+                <li class="active" data-filter="all"><i class="fa fa-reorder"></i> Ã„Ì⁄  «·„‰ Ã« </li>
+                <li data-filter="1">«·„ﬂ„·«  «·€–«∆Ì…</li>
+                <li data-filter="2">«·„‘—Ê»«  «·’ÕÌ…</li>
+                <li data-filter="3">«·⁄‰«Ì… «·‘Œ’Ì…</li>
+                <!-- Filter Wrapper Items Ends -->
+            </ul>
+        </nav>
+        <!-- Filter Wrapper Ends -->
+        <div>
+            <div class="filtr-container">
+                @foreach (var item in Model.Product)
+                {
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="@item.CategoryProductId">
+                        <div class="magnific-popup-gallery">
+                            <!-- Thumbnail Starts -->
+                            <figure class="thumbnail thumbnail__portfolio">
+                                <a class="image-wrap" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image  )" data-gal="magnific-pop-up[image]" title="‰„Ê–Ã ’Ê—…">
+
+                                    <img class="img-fluid" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image)" /><span class="zoom-icon"></span>
+
+
+                                    <span class="zoom-icon"></span>
+                                </a>
+
+
+
+                            </figure>
+                            <!-- Thumbnail Ends -->
+                            <!-- Caption Starts -->
+                            <div class="caption">
+                                <h3>@item.ProductNameArabic</h3>
+                                <p>@item.ProductNameEnglish  </p>
+                            </div>
+                            <!-- Caption Ends -->
+                        </div>
+                    </div>
+                }
+
+              
+
+                @*<div class="col-12 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="2">
+            <div class="magnific-popup-gallery">
+                <!-- Thumbnail Starts -->
+                <figure class="thumbnail thumbnail__portfolio">
+                    <a class="image-wrap mfp-youtube" href="https://www.youtube.com/watch?v=0gv7OC9L2s8"><img class="img-fluid" src="img/projects/project-2.jpg" alt="›ÌœÌÊ ÌÊ ÌÊ»" /><span class="zoom-icon video-icon"></span></a>
+                </figure>
+                <!-- Thumbnail Ends -->
+                <!-- Caption Starts -->
+                <div class="caption">
+                    <h3>›ÌœÌÊ ÌÊ ÌÊ»</h3>
+                    <p>Â–« «·‰’ Ì„ﬂ‰ √‰ Ì „  —ﬂÌ»Â ⁄·Ï √Ì  ’„Ì„ œÊ‰ „‘ﬂ·… ›·‰ Ì»œÊ Êﬂ√‰Â ‰’ „‰”ÊŒ ...</p>
+                </div>
+                <!-- Caption Ends -->
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="1">
+            <div class="magnific-popup-gallery">
+                <!-- Thumbnail Starts -->
+                <figure class="thumbnail thumbnail__portfolio">
+                    <a class="image-wrap" href="img/projects/project-3.jpg" data-gal="magnific-pop-up[gallery]" title="‰„Ê–Ã „⁄—÷ ’Ê—"><img class="img-fluid" src="img/projects/project-3.jpg" alt="Gallery project" /><span class="zoom-icon gallery-icon"></span></a>
+                </figure>
+                <a href="img/projects/project-1.jpg" title="Gallery project" data-gal="magnific-pop-up[gallery]" style="display:none;"></a>
+                <a href="img/projects/project-2.jpg" title="Gallery project" data-gal="magnific-pop-up[gallery]" style="display:none;"></a>
+                <a href="img/projects/project-3.jpg" title="Gallery project" data-gal="magnific-pop-up[gallery]" style="display:none;"></a>
+                <a href="img/projects/project-4.jpg" title="Gallery project" data-gal="magnific-pop-up[gallery]" style="display:none;"></a>
+                <a href="img/projects/project-5.jpg" title="Gallery project" data-gal="magnific-pop-up[gallery]" style="display:none;"></a>
+                <a href="img/projects/project-6.jpg" title="Gallery project" data-gal="magnific-pop-up[gallery]" style="display:none;"></a>
+                <!-- Thumbnail Ends -->
+                <!-- Caption Starts -->
+                <div class="caption">
+                    <h3>‰„Ê–Ã „⁄—÷ ’Ê—</h3>
+                    <p>Â–« «·‰’ Ì„ﬂ‰ √‰ Ì „  —ﬂÌ»Â ⁄·Ï √Ì  ’„Ì„ œÊ‰ „‘ﬂ·… ›·‰ Ì»œÊ Êﬂ√‰Â ‰’ „‰”ÊŒ ...</p>
+                </div>
+                <!-- Caption Ends -->
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="3">
+            <div class="magnific-popup-gallery">
+                <!-- Thumbnail Starts -->
+                <figure class="thumbnail thumbnail__portfolio">
+                    <a class="image-wrap" href="#" title="„Êﬁ⁄ Ê«»"><img class="img-fluid" src="img/projects/project-4.jpg" alt="„Êﬁ⁄ Ê«»" /><span class="zoom-icon external-icon"></span></a>
+                </figure>
+                <!-- Thumbnail Ends -->
+                <!-- Caption Starts -->
+                <div class="caption">
+                    <h3>„Êﬁ⁄ Ê«»</h3>
+                    <p>Â–« «·‰’ Ì„ﬂ‰ √‰ Ì „  —ﬂÌ»Â ⁄·Ï √Ì  ’„Ì„ œÊ‰ „‘ﬂ·… ›·‰ Ì»œÊ Êﬂ√‰Â ‰’ „‰”ÊŒ ...</p>
+                </div>
+                <!-- Caption Ends -->
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="1">
+            <div class="magnific-popup-gallery">
+                <!-- Thumbnail Starts -->
+                <figure class="thumbnail thumbnail__portfolio">
+                    <a class="image-wrap" href="img/projects/project-5.jpg" data-gal="magnific-pop-up[image]" title="‰„Ê–Ã ’Ê—…"><img class="img-fluid" src="img/projects/project-5.jpg" alt="‰„Ê–Ã ’Ê—…" /><span class="zoom-icon"></span></a>
+                </figure>
+                <!-- Thumbnail Ends -->
+                <!-- Caption Starts -->
+                <div class="caption">
+                    <h3>‰„Ê–Ã ’Ê—…</h3>
+                    <p>Â–« «·‰’ Ì„ﬂ‰ √‰ Ì „  —ﬂÌ»Â ⁄·Ï √Ì  ’„Ì„ œÊ‰ „‘ﬂ·… ›·‰ Ì»œÊ Êﬂ√‰Â ‰’ „‰”ÊŒ ...</p>
+                </div>
+                <!-- Caption Ends -->
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="2">
+            <div class="magnific-popup-gallery">
+                <!-- Thumbnail Starts -->
+                <figure class="thumbnail thumbnail__portfolio">
+                    <a class="image-wrap mfp-youtube" href="https://www.youtube.com/watch?v=O_C5CN1L3Xo"><img class="img-fluid" src="img/projects/project-6.jpg" alt="›ÌœÌÊ ÌÊ ÌÊ»" /><span class="zoom-icon video-icon"></span></a>
+                </figure>
+                <!-- Thumbnail Ends -->
+                <!-- Caption Starts -->
+                <div class="caption">
+                    <h3>›ÌœÌÊ ÌÊ ÌÊ»</h3>
+                    <p>Â–« «·‰’ Ì„ﬂ‰ √‰ Ì „  —ﬂÌ»Â ⁄·Ï √Ì  ’„Ì„ œÊ‰ „‘ﬂ·… ›·‰ Ì»œÊ Êﬂ√‰Â ‰’ „‰”ÊŒ ...</p>
+                </div>
+                <!-- Caption Ends -->
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="1">
+            <div class="magnific-popup-gallery">
+                <!-- Thumbnail Starts -->
+                <figure class="thumbnail thumbnail__portfolio">
+                    <a class="image-wrap" href="img/projects/project-7.jpg" data-gal="magnific-pop-up[image]" title="‰„Ê–Ã ’Ê—…"><img class="img-fluid" src="img/projects/project-7.jpg" alt="Image Project" /><span class="zoom-icon"></span></a>
+                </figure>
+                <!-- Thumbnail Ends -->
+                <!-- Caption Starts -->
+                <div class="caption">
+                    <h3>‰„Ê–Ã ’Ê—…</h3>
+                    <p>Â–« «·‰’ Ì„ﬂ‰ √‰ Ì „  —ﬂÌ»Â ⁄·Ï √Ì  ’„Ì„ œÊ‰ „‘ﬂ·… ›·‰ Ì»œÊ Êﬂ√‰Â ‰’ „‰”ÊŒ ...</p>
+                </div>
+                <!-- Caption Ends -->
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="2">
+            <div class="magnific-popup-gallery">
+                <!-- Thumbnail Starts -->
+                <figure class="thumbnail thumbnail__portfolio">
+                    <a class="image-wrap mfp-vimeo" href="https://vimeo.com/23534361"><img class="img-fluid" src="img/projects/project-8.jpg" alt="›ÌœÌÊ ›Ì„ÌÊ" /><span class="zoom-icon video-icon"></span></a>
+                </figure>
+                <!-- Thumbnail Ends -->
+                <!-- Caption Starts -->
+                <div class="caption">
+                    <h3>›ÌœÌÊ ›Ì„ÌÊ</h3>
+                    <p>Â–« «·‰’ Ì„ﬂ‰ √‰ Ì „  —ﬂÌ»Â ⁄·Ï √Ì  ’„Ì„ œÊ‰ „‘ﬂ·… ›·‰ Ì»œÊ Êﬂ√‰Â ‰’ „‰”ÊŒ ...</p>
+                </div>
+                <!-- Caption Ends -->
+            </div>
+        </div>*@
+            </div>
+        </div>
+    </div>
+    <!-- Container Ends -->
+</section>

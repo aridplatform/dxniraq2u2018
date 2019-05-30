@@ -1,0 +1,31 @@
+﻿@model dxniraq2u2018.Models.BlogPostViewModel
+
+@{
+    ViewData["Title"] = Model.BlogPost.Title;
+}
+
+@Html.DisplayFor(model => model.BlogPost.BlogCategory.Name) /
+@Html.DisplayFor(model => model.BlogPost.Title)
+<br />
+@Html.DisplayFor(model => model.BlogPost.Date)
+<hr />
+
+<br />
+<img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.BlogPost.Image)" />
+<br /><br />
+
+@Html.Raw(Model.BlogPost.Body)
+<br />
+
+@if ((Model.BlogPost.Filelink) != null)
+{<a href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.FileFolder + "/" + Model.BlogPost.Filelink)">رابط تحميل الملف</a>}
+
+@foreach (var Item in Model.BlogAlbum.OrderBy(a => a.OrderId))
+{
+    <br />
+    <img class="img-rounded" width="500" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Item.Image)" />
+}
+
+    <div class="sharethis-inline-share-buttons"></div>
+<br/>
+    <div class="fb-comments" data-href="https://dxniraq2u.com/BlogPosts/Details/@Model.BlogPost.Id" data-numposts="100"></div>

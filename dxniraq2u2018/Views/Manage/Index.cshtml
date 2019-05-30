@@ -1,0 +1,147 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "تفاصيل الحساب الشخصي";
+    ViewData.AddActivePage(ManageNavPages.Index);
+}
+
+<h4>@ViewData["Title"]</h4>
+@Html.Partial("_StatusMessage", Model.StatusMessage)
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                @if (Model.IsEmailConfirmed)
+                {
+                    <div class="input-group">
+                        <input asp-for="Email" class="form-control" />
+                        <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+                    </div>
+                }
+                else
+                {
+                    <input asp-for="Email" class="form-control" />
+                    <button asp-action="SendVerificationEmail" class="btn btn-link">ارسال رسالة التحقق من البريد</button>
+                }
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CityId"></label>
+                <select id="ctyid" asp-for="CityId" class="form-control" asp-items="@(ViewBag.CityId)">
+                    <option disabled value="">اضغط هنا</option>
+                </select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BranchId"></label>
+                <select id="ctyid" asp-for="BranchId" class="form-control" asp-items="@(ViewBag.BranchId)">
+                    <option disabled value="">اضغط هنا </option>
+                </select>
+                <span asp-validation-for="BranchId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MemberTypeId"></label>
+                <select id="MemberTypeId" asp-for="MemberTypeId" class="form-control" asp-items="@(ViewBag.MemberTypeId)">
+                    <option disabled value="">اضغط هنا</option>
+                </select>
+                <span asp-validation-for="MemberTypeId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ArName"></label>
+                <input asp-for="ArName" class="form-control" />
+                <span asp-validation-for="ArName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EnName"></label>
+                <input asp-for="EnName" class="form-control" />
+                <span asp-validation-for="EnName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SponsorId"></label>
+                <input asp-for="SponsorId" class="form-control" />
+                <span asp-validation-for="SponsorId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DXNId"></label>
+                <input asp-for="DXNId" class="form-control" />
+                <span asp-validation-for="DXNId" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+                <label asp-for="DateofBirth"></label>
+                <input asp-for="DateofBirth" class="form-control" />
+                <span asp-validation-for="DateofBirth" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <label asp-for="ProfileImage"></label>
+                <img src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.ProfileImage  )" width="150" height="90" />
+                <input type="file" name="myfile" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <input asp-for="ProfileImage" name="fileinput" id="fileinput" class="form-control" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <div>
+                    <select asp-for="Gender" class="form-control"
+                            asp-items="Html.GetEnumSelectList<dxniraq2u2018.Models.Common.GenderType>()">
+                        <option disabled selected value="">حدد الجنس</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="InvitationLink" class="control-label"></label>
+                <div>
+                    <input asp-for="InvitationLink" class="form-control" />
+                    <span asp-validation-for="InvitationLink" class="text-danger"></span>
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                    <label asp-for="Gender"></label>
+                    <select asp-for="Gender" class="form-control"
+                            asp-items="Html.GetEnumSelectList<GenderType>()">
+                        <option disabled selected value="">أختر الجنس</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>*@
+
+
+            <button type="submit" class="btn btn-default">حفظ</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        $(document).ready(function () {
+            $("#file").change(function () {
+                if ($("#file").val() != "") {
+                    $("#fileinput").prop("value", $("#file").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+}

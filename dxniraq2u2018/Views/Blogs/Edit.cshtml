@@ -1,0 +1,125 @@
+﻿@model dxniraq2u2018.Models.Community
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2>تعديل بيانات المدونة</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="Name" class="control-label"></label>*@ الاسم باللغة العربية
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="ShortName" class="control-label"></label>*@ الاسم باللغة الانجليزية
+                <input asp-for="ShortName" class="form-control" />
+                <span asp-validation-for="ShortName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="Description" class="control-label"></label>*@ وصف المدونة
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BgImage" class="control-label"></label>
+                @if (Model.BgImage != null) { 
+                <br/>
+                    <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.BgImage)" />
+                    <br />
+                }
+                <input type="file" name="myfile" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <input asp-for="BgImage" id="fileinput" class="form-control" />
+                <span asp-validation-for="BgImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Logo" class="control-label"></label>*@ الصورة الشخصية او الصورة المعبرة
+                @if (Model.Logo != null)
+                {
+                    <br />
+                    <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Logo)" />
+                    <br />
+                }
+                <input type="file" name="myfile1" id="file1" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <input asp-for="Logo" id="fileinput1" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+                    <label asp-for="CommunityType" class="control-label"></label>
+                    <select asp-for="CommunityType" asp-items="Html.GetEnumSelectList<CommunityType>()" class="form-control"></select>
+                    <span asp-validation-for="CommunityType" class="text-danger"></span>
+                </div>*@
+          
+            @*<div class="form-group">
+                    <label asp-for="SecurityLevel" class="control-label"></label>
+                    <select asp-for="SecurityLevel" asp-items="Html.GetEnumSelectList<SecurityLevel>()" class="form-control"></select>
+                    <span asp-validation-for="SecurityLevel" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsCommentsAllowed" /> @Html.DisplayNameFor(model => model.IsCommentsAllowed)
+                        </label>
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" multiple class="form-control" />
+                <small id="emailHelp" class="form-text text-muted">الرجاء تحديد الكلمات المفتاحية التي تخص المدونة. افصل بين الكلمات بفارزة. </small>
+                <br />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">العودة</a>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#file").change(function () {
+                if ($("#file").val() != "") {
+                    $("#fileinput").prop("value", $("#file").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#file1").change(function () {
+                if ($("#file1").val() != "") {
+                    $("#fileinput1").prop("value", $("#file1").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            directionality: 'rtl',
+            //language: 'ar_SA',
+            plugins: "link",
+            mode: "textareas",
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: true,
+            toolbar: false,
+            menubar: false
+            //plugins: "table,contextmenu,paste,-externalplugin"
+
+        });</script>
+}

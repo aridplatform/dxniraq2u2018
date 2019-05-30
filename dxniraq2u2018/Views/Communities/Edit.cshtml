@@ -1,0 +1,156 @@
+﻿@model dxniraq2u2018.Models.Community
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2>Edit</h2>
+<h4>Community</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ApplicationUserId" class="control-label"></label>
+                <input asp-for="ApplicationUserId" class="form-control" />
+                <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortName" class="control-label"></label>
+                <input asp-for="ShortName" class="form-control" />
+                <span asp-validation-for="ShortName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BgImage" class="control-label"></label>
+                <input type="file" name="myfile" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <input asp-for="BgImage" id="fileinput" class="form-control" />
+                <img id="img1" class="img-rounded" src="@Url.Content("~/" + @dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.BgImage)"/>
+                <span asp-validation-for="BgImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label"></label>
+                <input type="file" name="myfile1" id="file1" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <input asp-for="Logo" id="fileinput1" class="form-control" />
+                <img id="img2" class="img-rounded" src="@Url.Content("~/" + @dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Logo)" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="control-label"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CommunityType" class="control-label"></label>
+                <select asp-for="CommunityType" asp-items="Html.GetEnumSelectList<dxniraq2u2018.Models.Common.CommunityType>()" class="form-control"></select>
+                <span asp-validation-for="CommunityType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecialityId" class="control-label"></label>
+                <select asp-for="SpecialityId" class="form-control" asp-items="ViewBag.SpecialityId"></select>
+                <span asp-validation-for="SpecialityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecurityLevel" class="control-label"></label>
+                <select asp-for="SecurityLevel" asp-items="Html.GetEnumSelectList<dxniraq2u2018.Models.Common.SecurityLevel>()" class="form-control"></select>
+                <span asp-validation-for="SecurityLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsCommentsAllowed" /> @Html.DisplayNameFor(model => model.IsCommentsAllowed)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsFeatured" /> @Html.DisplayNameFor(model => model.IsFeatured)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsSuspended" /> @Html.DisplayNameFor(model => model.IsSuspended)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" class="form-control" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+            <div class="form-group btn btn-primary">
+                <input type="submit" value="Save" class="btn btn-default" />
+                <a asp-action="Index" class="btn btn-success">Back to List</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#file").change(function () {
+                if ($("#file").val() != "") {
+                    $("#fileinput").prop("value", $("#file").val().split('\\').pop());
+
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) { $('#img1').attr('src', e.target.result); }
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#file1").change(function () {
+                if ($("#file1").val() != "") {
+                    $("#fileinput1").prop("value", $("#file1").val().split('\\').pop());
+
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) { $('#img2').attr('src', e.target.result); }
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+tinymce.init({
+            selector: 'textarea',
+            directionality: 'rtl',
+            //language: 'ar_SA',
+    plugins: "link",
+    mode: "textareas",
+    relative_urls: false,
+    remove_script_host: false,
+    convert_urls: true,
+
+            //plugins: "table,contextmenu,paste,-externalplugin"
+
+});</script>
+
+}

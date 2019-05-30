@@ -1,0 +1,97 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductNameArabic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductNameEnglish)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PV)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SV)
+                </th>
+               
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsAvailable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+               
+                <th>
+                    @Html.DisplayNameFor(model => model.NonMemberPrice)
+                </th>
+              
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryProduct )
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductNameArabic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductNameEnglish)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SV)
+            </td>
+          
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+                <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image  )" width="100" height="90" />
+
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.NonMemberPrice)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryProduct.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">شراء</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

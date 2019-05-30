@@ -1,0 +1,68 @@
+﻿@model dxniraq2u2018.Models.Ticket
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>تحرير تذكرة دعم فني</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Subject" class="control-label"></label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <textarea rows="4" cols="100" asp-for="Body" class="form-control"></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+
+
+            directionality: 'rtl',
+            //language: 'ar_SA',
+            plugins: "link,image,media,table",
+
+            //menubar: "insert",
+            toolbar: "link,image,media,table",
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: true,
+
+            mode: "textareas",
+
+            //plugins: "table,contextmenu,paste,-externalplugin"
+
+        });</script>
+}

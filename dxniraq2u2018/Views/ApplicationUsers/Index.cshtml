@@ -1,0 +1,146 @@
+﻿@model dxniraq2u2018.Models.ApplicationUserViewModel
+
+@{
+    ViewData["Title"] = "عرض المستخدمين";
+}
+
+<div class="form-group row col-lg-12">
+    <div class="col-lg-2">
+        <span class="glyphicon glyphicon-search" id="span" title="بحث"></span>
+        <span class="glyphicon glyphicon-remove" id="spanx" title="الغاء نتائج البحث"></span>
+    </div>
+    <div class="col-lg-6">
+        <form asp-controller="ApplicationUsers" asp-action="Index" id="form" class="row">
+            <p>
+                <input id="in" type="text" name="SearchString">
+                <input type="submit" value="بحث" id="search" />
+            </p>
+        </form>
+    </div>
+</div>
+<h2>قائمة الاعضاء</h2>
+
+@*<p>
+        <a asp-action="Create">Crew</a>
+    </p>*@
+<table class="table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.ArName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.EnName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.DxnId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.PhoneNumber)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Branch)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberType)
+                </th>*@
+            @*<th></th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ApplicationUsers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DxnId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Branch.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City.ArCityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberType.NameEng)
+                    </td>*@
+
+                @*<td>
+                        @if (item.ProfileImage != null) {
+                        <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.ProfileImage)" width="100" height="100" />
+                        }
+                    </td>*@
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><span alt="تحرير" class="glyphicon glyphicon-edit"></span></a> |
+                    <a asp-action="ControlPanel" asp-route-id="@item.Id"><span alt="لوحة التحكم" class="glyphicon glyphicon-modal-window"></span></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><span alt="حذف" class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+     page-class="btn border" page-class-normal="btn btn-default active"
+     page-class-selected="btn btn-success active" class="btn-group m-1"></div>
+
+<style>
+    input[type='submit'], h3, label, .bold, h4, button {
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    dt {
+        text-align: left;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#form").hide();
+            $("#span").css('cursor', 'pointer');
+            $("#spanx").css('cursor', 'pointer');
+            $("#span").click(function () {
+                $("#form").slideToggle("slow");
+
+                //$("#span").toggleClass(".glyphicon glyphicon-remove");
+
+            });
+            $("#spanx").click(function () {
+                $("#in").attr('value', '')
+                $('#search').trigger('click');
+            });
+            $("#all").click(function () {
+                $("#in").attr('value', '')
+                $('#search').trigger('click');
+            });
+
+        });
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

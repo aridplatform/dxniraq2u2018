@@ -1,0 +1,94 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Lecture>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{ ApplicationUser currentUser = await UserManager.GetUserAsync(User); }
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>جدول المحاضرات</h2>
+
+
+@if ((currentUser.IsInstructor) == true)
+{<p>
+    <a asp-action="Create">اضف محاضرة</a>
+</p>}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Content)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InstructorId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Seats)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsOpen)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.LevelType)
+                    </th>*@
+                @*<th>
+                    @Html.DisplayNameFor(model => model.IsOnline)
+                </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.IsAdminApproved)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Branch)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Content)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Instructor.ArName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Seats)
+                    </td>
+                  
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.LevelType)
+                        </td>*@
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.IsOnline)
+                    </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.IsAdminApproved)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Branch.Name)
+                    </td>
+                    <td>
+
+                        <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">تفاصيل</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

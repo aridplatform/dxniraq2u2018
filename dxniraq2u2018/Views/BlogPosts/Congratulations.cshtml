@@ -1,0 +1,17 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.BlogPost>
+<h3>تهاني الاعضاء</h3>
+<p>
+    <a asp-controller="BlogPosts" asp-action="NewCong">اضف تهنئة جديدة</a>
+</p>
+@foreach (var item in Model)
+{
+    <div class="col-sm-12">
+        <div class="panel panel-default" style="min-height:600px">
+            <div class="panel-body">
+                <h3><span>@Html.DisplayFor(modelitem => item.Title)</span></h3>
+                <img src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image)" style="min-height:100px" class="img-responsive" />
+                <h4><span>@Html.Raw(item.Introduction)</span></h4>
+            </div>
+        </div>
+    </div>
+}

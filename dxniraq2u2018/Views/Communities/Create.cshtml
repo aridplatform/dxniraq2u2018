@@ -1,0 +1,204 @@
+﻿
+
+@model dxniraq2u2018.Models.Community
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "انشاء مجتمع جديد";
+}
+<style>
+    .k-autocomplete {
+        width: 100%;
+    }
+</style>
+
+<h2>انشاء مجتمع جديد</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form id="createform" asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortName" class="control-label"></label>
+                <input asp-for="ShortName" class="form-control" />
+                <span asp-validation-for="ShortName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BgImage" class="control-label"></label>
+                <input type="file" name="myfile" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <input asp-for="BgImage" id="fileinput" class="form-control" />
+                <span asp-validation-for="BgImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label"></label>
+                <input type="file" name="myfile1" id="file1" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <input asp-for="Logo" id="fileinput1" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+                    <label asp-for="CommunityType" class="control-label"></label>
+                    <select asp-for="CommunityType" asp-items="Html.GetEnumSelectList<CommunityType>()" class="form-control"></select>
+                    <span asp-validation-for="CommunityType" class="text-danger"></span>
+                </div>*@
+          
+            @*<div class="form-group">
+                    <label asp-for="SecurityLevel" class="control-label"></label>
+                    <select asp-for="SecurityLevel" asp-items="Html.GetEnumSelectList<SecurityLevel>()" class="form-control"></select>
+                    <span asp-validation-for="SecurityLevel" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsCommentsAllowed" /> @Html.DisplayNameFor(model => model.IsCommentsAllowed)
+                        </label>
+                    </div>
+                </div>*@
+
+
+
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" type="hidden" />
+                <select id="Tagsddl" class="form-control" multiple>
+                    @{
+                        List<CommunityAutofillModel> ls = (List<CommunityAutofillModel>)ViewBag.Skills;
+                        foreach (var temp in ls)
+                        {
+                            <option value="@temp.Value">@temp.Text</option>
+                        }
+                    }
+                </select>
+
+
+                @*@(Html.Kendo().AutoCompleteFor(m => m.Tags)
+                                                                                           .Filter("contains")
+                                                                                    .DataTextField("Name")
+                                                                                                      .Placeholder("حدد الكلمات المفتاحية")
+                                                                                                      .Separator(",")
+                                                                                                       //.HtmlAttributes(new { style = "width:100%" })
+                                                                                                       .HtmlAttributes(new { @class = "form-control" })
+
+                                                                                                        .MinLength(4)
+                                                                                                          .Height(400)
+                                                                                                          .AutoWidth(true)
+                                                                                                         .EnforceMinLength()
+
+
+                                                                                    .DataSource(source =>
+                                                                                    {
+                                                                                        source.Read(read =>
+                                                                                        {
+                                                                                            read.Action("Skills_Read", "Posts");
+                                                                                        })
+                                                                                        .ServerFiltering(false);
+                                                                                    })
+                    )*@
+
+                @*<kendo-autocomplete name="Tags" asp-items="Html.GetEnumSelectList<GiftType>()"></kendo-autocomplete>*@
+                <small id="emailHelp" class="form-text text-muted">لارسال السؤال الى خبراء المنصة حدد الكلمات المفتاحة من القائمة المنسدلة. افصل بين الكلمات بفارزة. يمكن ادخال الكلمة المفتاحية ان لم تكون موجودة ضمن القائمة</small>
+                <br /> <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="button" onclick="Submit()" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+
+
+
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    <link href="~/css/jquery-ui.css"
+          rel="stylesheet"
+          type="text/css" />
+    <link href="~/css/tokenize2.css"
+          rel="stylesheet"
+          type="text/css" />
+    <script src="~/js/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/js/tokenize2.js"></script>
+    <script type="text/javascript">
+        function Submit() {
+            debugger
+            var tags = $("#Tagsddl").val();
+            var b = tags.join(", ")
+            $("#Tags").val(tags.join(", "));
+            $('#createform').submit();
+
+        }
+        function onAdditionalData() {
+            return {
+                text: $("#Tags").val()
+            };
+        }
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#Tagsddl').tokenize2({
+                searchMinLength: 5
+            });
+
+
+
+
+
+            @*$('#Tags').tagsInput({
+                source: '/@CultureInfo.CurrentCulture.Name/Communities/getSkillsandExpertises'
+            });*@
+            $("#file").change(function () {
+                if ($("#file").val() != "") {
+                    $("#fileinput").prop("value", $("#file").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#file1").change(function () {
+                if ($("#file1").val() != "") {
+                    $("#fileinput1").prop("value", $("#file1").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            directionality: 'rtl',
+            //language: 'ar_SA',
+            plugins: "link",
+            mode: "textareas",
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: true,
+            toolbar: false,
+            menubar: false
+            //plugins: "table,contextmenu,paste,-externalplugin"
+
+        });</script>
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+
+}

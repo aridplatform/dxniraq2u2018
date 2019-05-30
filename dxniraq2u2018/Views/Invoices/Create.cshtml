@@ -1,0 +1,123 @@
+﻿@model dxniraq2u2018.Models.Invoice
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserId" class="control-label"></label>
+                <select asp-for="ApplicationUserId" class ="form-control" asp-items="ViewBag.ApplicationUserId"></select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="PaymentStatus" /> @Html.DisplayNameFor(model => model.PaymentStatus)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentMethodId" class="control-label"></label>
+                <select asp-for="PaymentMethodId" class ="form-control" asp-items="ViewBag.PaymentMethodId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentMethodReference" class="control-label"></label>
+                <input asp-for="PaymentMethodReference" class="form-control" />
+                <span asp-validation-for="PaymentMethodReference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountantId" class="control-label"></label>
+                <select asp-for="AccountantId" class ="form-control" asp-items="ViewBag.AccountantId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IssuingDate" class="control-label"></label>
+                <input asp-for="IssuingDate" class="form-control" />
+                <span asp-validation-for="IssuingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaidDate" class="control-label"></label>
+                <input asp-for="PaidDate" class="form-control" />
+                <span asp-validation-for="PaidDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverId" class="control-label"></label>
+                <select asp-for="DriverId" class ="form-control" asp-items="ViewBag.DriverId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveredDate" class="control-label"></label>
+                <input asp-for="DeliveredDate" class="form-control" />
+                <span asp-validation-for="DeliveredDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsCalled" /> @Html.DisplayNameFor(model => model.IsCalled)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsloggedToDxnSystem" /> @Html.DisplayNameFor(model => model.IsloggedToDxnSystem)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SystemTrackNo" class="control-label"></label>
+                <input asp-for="SystemTrackNo" class="form-control" />
+                <span asp-validation-for="SystemTrackNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressId" class="control-label"></label>
+                <select asp-for="AddressId" class ="form-control" asp-items="ViewBag.AddressId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BranchId" class="control-label"></label>
+                <select asp-for="BranchId" class ="form-control" asp-items="ViewBag.BranchId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerSatisfaction" class="control-label"></label>
+                <input asp-for="CustomerSatisfaction" class="form-control" />
+                <span asp-validation-for="CustomerSatisfaction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceivedByName" class="control-label"></label>
+                <input asp-for="ReceivedByName" class="form-control" />
+                <span asp-validation-for="ReceivedByName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceivedByMobile" class="control-label"></label>
+                <input asp-for="ReceivedByMobile" class="form-control" />
+                <span asp-validation-for="ReceivedByMobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceivedByRelationshipId" class="control-label"></label>
+                <input asp-for="ReceivedByRelationshipId" class="form-control" />
+                <span asp-validation-for="ReceivedByRelationshipId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

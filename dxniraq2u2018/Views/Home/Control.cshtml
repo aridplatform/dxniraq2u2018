@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewData["Title"] = "Control";
+}
+<style>
+    a:hover {
+        box-shadow: 1px 1px #53a7ea, 2px 2px #53a7ea, 3px 3px #53a7ea;
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+      
+    }
+
+    span:hover {
+        opacity: 1;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+        transition: 1s ease;
+        -webkit-filter: blur(1px);
+    }
+
+    span {
+        opacity: 0.5;
+        transition: 1s ease;
+    }
+</style>
+
+@*<h2>لوحة التحكم</h2>*@
+@*<p>مرحبا  بكم في لوحة التحكم</p>*@
+@inject UserManager<ApplicationUser> UserManager
+
+@{ ApplicationUser currentUser = await UserManager.GetUserAsync(User); }
+
+<div class="container">
+
+    <div class="row">
+        @*<div style="text-align:center;" class="col-xs-12 col-md-12 kotak-dashboard">
+                <div class="thumbnail grow">
+                    <img src="../images/Blocks/conf.jpg" alt="customer">
+                    <div class="caption">
+
+
+                        <a href="../RegisterIntentions/Create" class="btn btn-danger" role="button">    <h4><span class="glyphicon glyphicon glyphicon-heart"></span> المؤتمر التدريبي الاول لاعضاء العراق 23-24 نوفمبر 2018. اضغط هنا لتاكيد تسجيلكم</h4></a>
+
+                    </div>
+                </div>
+            </div>*@
+
+        <div style="text-align:center" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/ecommerce.png" alt="customer">*@
+              
+                    <span style="font-size: 75px;" class="glyphicon glyphicon-shopping-cart"></span>
+               
+                    <div class="caption">
+                        <a href="../CategoryProducts" class="btn btn-primary" role="button">    <h4><span class="glyphicon glyphicon-shopping-cart"></span> التسوق الالكتروني</h4></a>
+                    </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/2.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-equalizer"></span>
+                <div class="caption">
+                    <a href="../Branches" class="btn btn-info" role="button">     <h4><span class="glyphicon glyphicon-equalizer"></span> قائمة الفروع</h4></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/3.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-calendar"></span>
+                <div class="caption">
+
+
+                    <a href="../Lectures" class="btn btn-default" role="button">     <h4><span class="glyphicon glyphicon-calendar"></span> الدورات والمحاضرات</h4></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/6.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-globe"></span>
+                <div class="caption">
+
+
+                    <a href="../BlogPosts/SectionLists/1" class="btn btn-danger" role="button">     <h4><span class="glyphicon glyphicon-globe"></span> جديد الأخبار</h4></a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                <span style="font-size: 75px;" class="glyphicon glyphicon-user"></span>
+                @*<img src="../images/Blocks/cong.png" alt="customer">*@
+                <div class="caption">
+
+
+                    <a href="../BlogPosts/Congratulations" class="btn btn-default" role="button">     <h4><span class="glyphicon glyphicon-user"></span> تهاني الاعضاء</h4></a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/cert.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-duplicate"></span>
+                <div class="caption">
+
+
+                    <a href="../BlogPosts/SectionLists/1002" class="btn btn-info" role="button">     <h4><span class="glyphicon glyphicon-duplicate"></span> الشهادات الصحية والمالية</h4></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/eworld.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-dashboard"></span>
+                <div class="caption">
+
+
+                    <a href="https://eworld.dxn2u.com/" target="_blank" class="btn btn-success" role="button">     <h4><span class="glyphicon glyphicon-dashboard"></span> Eworld</h4></a>
+
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/register_new.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-tasks"></span>
+                <div class="caption">
+                    <a target="_blank" href="https://eworld.dxn2u.com/index.php?r=account/register&dlang=&mc=@currentUser.DxnId" class="btn btn-warning" role="button">     <h4><span class="glyphicon glyphicon-tasks"></span> تسجيل العضوية الالكتروني</h4></a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/gain.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-earphone"></span>
+                <div class="caption">
+                    <a href="../Tickets" class="btn btn-danger" role="button">     <h4><span class="glyphicon glyphicon-earphone"></span> الدعم الفني وخدمة العملاء</h4></a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/travel.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-briefcase"></span>
+                <div class="caption">
+                    <a href="../BlogPosts/PostsLists/1013" class="btn btn-danger" role="button">     <h4><span class="glyphicon glyphicon-briefcase"></span> الرحلة الدولية</h4></a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;" class="col-xs-12 col-md-4 kotak-dashboard">
+            <div class="thumbnail grow">
+                @*<img src="../images/Blocks/new_rank.png" alt="customer">*@
+                <span style="font-size: 75px;" class="glyphicon glyphicon-export"></span>
+                <div class="caption">
+                    <a href="../BlogPosts/PostsLists/1014" class="btn btn-info" role="button">     <h4><span class="glyphicon glyphicon-export"></span> المتأهلين الى رتب جديدة</h4></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

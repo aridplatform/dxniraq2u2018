@@ -1,0 +1,62 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Gallery>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<h2>ألبوم الصور</h2>
+
+<p>
+    @if (User.IsInRole("Admins"))
+    {
+        <a asp-action="Create">انشاء البوم جديد</a>
+    }
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="GalleryImages" asp-action="Display" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Subject)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+
+                        <td>
+                            @if (User.IsInRole("Admins"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a>
+                                <a target="_blank" asp-controller="GalleryImages" asp-action="Display" asp-route-id="@item.Id">
+                                    عرض الالبوم
+                                </a>
+
+                                <a asp-controller="GalleryImages" asp-action="Index" asp-route-id="@item.Id">
+                                    ادارة الالبوم
+                                </a>
+
+                                <a asp-action="Delete" asp-route-id="@item.Id">
+                                    حذف
+                                </a>
+                            }
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>

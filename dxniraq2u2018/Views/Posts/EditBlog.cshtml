@@ -1,0 +1,158 @@
+﻿@model dxniraq2u2018.Models.Post
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="EditBlog" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group" hidden>
+                @*<label asp-for="CommunityId" class="control-label"></label>*@
+                <select readonly asp-for="CommunityId" class="form-control" asp-items="ViewBag.CommunityId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostType" class="control-label"></label>
+                <select asp-for="PostType" class="form-control" asp-items="Html.GetEnumSelectList<dxniraq2u2018.Models.Common.BlogPostType>()"></select>
+                <span asp-validation-for="PostType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                @Html.TextAreaFor(model => model.Body, new { rows = 30, cols = 50, @class = "form-control", @maxlength = "5000" })
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input checked asp-for="IsCommentsAllowed" /> @Html.DisplayNameFor(model => model.IsCommentsAllowed)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <br />
+                @if (Model.Image != null)
+                {
+                    <img id="img1" class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Image)" />}
+                <input type="file" name="myfile" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+                <input asp-for="Image" id="fileinput" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                @if (Model.File != null)
+                {
+                    <a target="_blank" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.FileFolder + "/" + Model.File)">تحميل</a>}
+                <input type="file" name="myfile1" id="file1" accept=".pdf,.doc,.docx,.xls,.txt,.ppt,.pptx" class="btn btn-default" />
+                <span asp-validation-for="File" class="text-danger"></span>
+                <input asp-for="File" id="fileinput1" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" class="form-control" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Reads" class="control-label"></label>
+                <input readonly asp-for="Reads" class="form-control" />
+                <span asp-validation-for="Reads" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsPublishRequest" /> @Html.DisplayNameFor(model => model.IsPublishRequest)
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <input type="submit" value="اعتماد ونشر المدونة" class="btn btn-default" />
+                @*<a asp-action="Index" class="btn btn-success">Back to List</a>*@
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(function () {
+            $("#testdiv").hide();
+            $('#chkStatus').change(function () {
+                if ($('#chkStatus').is(':checked'))
+                    $("#testdiv").fadeIn();
+                else
+                    $('#testdiv').fadeOut();
+            });
+        });
+
+
+        $(function () {
+            var $cb = $('#checkboxId');
+            $('#dropdownlistId').change(function () {
+                if (this.value == '2') {
+                    $cb.prop('disabled', true);
+                } else {
+                    $cb.prop('disabled', false);
+                }
+            }).trigger('change');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#file").change(function () {
+                if ($("#file").val() != "") {
+                    $("#fileinput").prop("value", $("#file").val().split('\\').pop());
+
+                    //to show new image at a time of image selected from file input type
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) { $('#img1').attr('src', e.target.result); }
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#file1").change(function () {
+                if ($("#file1").val() != "") {
+                    $("#fileinput1").prop("value", $("#file1").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            directionality: 'rtl',
+            //language: 'ar_SA',
+            plugins: "link,media,image,textpattern",
+            mode: "textareas",
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: true,
+            toolbar: "link,media,image,textpattern"
+
+            //plugins: "table,contextmenu,paste,-externalplugin"
+
+        });</script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+}

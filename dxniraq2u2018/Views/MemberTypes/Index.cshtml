@@ -1,0 +1,61 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.MemberType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NameAr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NameEng)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TypeAbbreviation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameAr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameEng)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeAbbreviation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Image)*@
+                <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image  )" width="50" height="50" />
+
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+          
+                <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,139 @@
+﻿@model dxniraq2u2018.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Products</h4>
+    <hr />
+    <form asp-action="purchase">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductNameArabic)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProductNameArabic)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductNameEnglish)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProductNameEnglish)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductCode)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProductCode)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PV)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PV)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SV)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SV)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DescArabic)
+            </dt>
+            <dd>
+                @Html.Raw(Model.DescArabic)
+
+            </dd>
+            @*<dt>
+                @Html.DisplayNameFor(model => model.DescEnglish)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DescEnglish)
+            </dd>*@
+            <dt>
+                @Html.DisplayNameFor(model => model.MemberPrice)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MemberPrice)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsAvailable)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+            <dd>
+                @*@Html.DisplayFor(model => model.Image)*@
+                <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model .Image  )" width="100" height="90" />
+
+
+            </dd>
+            @*<dt>
+                @Html.DisplayNameFor(model => model.Weight)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Weight)
+            </dd>*@
+            <dt>
+                @Html.DisplayNameFor(model => model.NonMemberPrice)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NonMemberPrice)
+            </dd>
+            @*<dt>
+                @Html.DisplayNameFor(model => model.BarCode)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BarCode)
+            </dd>*@
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryProduct)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryProduct.Name)
+            </dd>
+
+
+            <dt>
+                DXN
+            </dt>
+            <dd>
+                <input id="DxnId" type="text" value="@ViewData["DXNId"]" name="DxnId" />
+            </dd>
+
+
+            <dt>
+                الكمية
+            </dt>
+            <dd>
+                <input value="1" id="quantity" type="text" name="quantity" />
+
+                @*<input asp-for="quantity" class="form-control" />*@
+
+            </dd>
+
+        </dl>
+        <input type="hidden" asp-for="Id" />
+
+        @if (Model.IsAvailable == false)
+        {<input type="submit" value="نفذت هذه السلعة" disabled class="btn btn-default" /> }
+
+        else
+
+        {
+            <input type="submit" value="اضف الى سلة التسوق" class="btn btn-default" />
+
+        }
+
+        |
+        <a asp-controller="CategoryProducts" asp-action="Index">عرض المنتجات</a>
+    </form>
+
+</div>

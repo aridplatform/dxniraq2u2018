@@ -1,0 +1,67 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.FaqCategory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<h2>اقسام الاسئلة المتكررة</h2>
+@{
+    ApplicationUser currentUser = null;
+    currentUser = await UserManager.GetUserAsync(User);
+    if (SignInManager.IsSignedIn(User) && (currentUser.MemberTypeId != 1 || currentUser.MemberTypeId != 2))
+    {
+        <p>
+            <a asp-action="Create">انشاء قسم جديد</a>
+        </p>
+    }
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUserId)
+            </th>
+
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <a asp-action="Index" asp-controller="Faqs" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.ApplicationUserId"> @Html.DisplayFor(modelItem => item.ApplicationUser.ArName)</a></td>
+
+            @if (currentUser.Id == item.ApplicationUserId)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+                    <a asp-action="IndexAdmin" asp-controller="Faqs" asp-route-id="@item.Id">ادارة الاسئلة</a> |
+                    <a target="_blank" asp-action="Index" asp-controller="Faqs" asp-route-id="@item.Id">صفحة النشر</a>
+              
+                </td>
+            }
+
+            @if (User.IsInRole("Admins"))
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+                    <a asp-action="IndexAdmin" asp-controller="Faqs" asp-route-id="@item.Id">ادارة الاسئلة</a> |
+                    <a target="_blank" asp-action="Index" asp-controller="Faqs" asp-route-id="@item.Id">صفحة النشر</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

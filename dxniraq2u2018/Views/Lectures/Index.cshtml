@@ -1,0 +1,193 @@
+﻿@model dxniraq2u2018.Models.LectureViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{ ApplicationUser currentUser = await UserManager.GetUserAsync(User); }
+@{
+    ViewData["Title"] = "جدول المحاضرات";
+}
+
+<div class="form-group row col-lg-12">
+    <div class="col-lg-2">
+        <span class="glyphicon glyphicon-search" id="span" title="بحث"></span>
+        <span class="glyphicon glyphicon-remove" id="spanx" title="الغاء نتائج البحث"></span>
+    </div>
+    <div class="col-lg-6">
+        <form asp-controller="Lectures" asp-action="Index" id="form" class="row">
+            <p>
+                <input id="in" type="text" name="SearchString">
+                <input type="submit" value="بحث" id="search" />
+            </p>
+        </form>
+    </div>
+</div>
+
+<h2>جدول المحاضرات</h2>
+
+
+@if ((currentUser.IsInstructor) == true)
+{<p>
+        <a asp-action="Create">اضف محاضرة</a>
+    </p>}
+
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lecture.Title)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Lecture.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lecture.InstructorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lecture.Seats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lecture.Branch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lecture.Flyer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lecture.IsOpen)
+            </th>
+
+            @*<th>
+                    @Html.DisplayNameFor(model => model.LevelType)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IsOnline)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IsAdminApproved)
+                </th>*@
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Lectures)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Instructor.ArName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seats)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.LevelType)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsOnline)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsAdminApproved)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Branch.Name)
+                </td>
+
+                <td>
+                    @if ((item.Flyer) == null)
+                    {
+                        <p style="color:gray;">قيد التصميم</p>
+
+                    }
+
+                    else
+                    { <a target="_blank " href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Flyer)">
+                            <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Flyer)" width="50" height="50" />
+                        </a>}
+
+
+
+                </td>
+
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.IsOpen)*@
+                    @if ((item.Date) < DateTime.Now)
+                    {
+                        <p style="color:red;">مغلقة</p>
+
+                    }
+
+                    else
+                    {<a style="color:green;" asp-action="Details" asp-route-id="@item.Id">متاحة للتسجيل</a>}
+
+                </td>
+
+                <td>
+
+
+                    @if (User.IsInRole("Admins"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+     page-class="btn border" page-class-normal="btn btn-default active"
+     page-class-selected="btn btn-success active" class="btn-group m-1"></div>
+
+<style>
+    input[type='submit'], h3, label, .bold, h4, button {
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    dt {
+        text-align: left;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#form").hide();
+            $("#span").css('cursor', 'pointer');
+            $("#spanx").css('cursor', 'pointer');
+            $("#span").click(function () {
+                $("#form").slideToggle("slow");
+
+                //$("#span").toggleClass(".glyphicon glyphicon-remove");
+
+            });
+            $("#spanx").click(function () {
+                $("#in").attr('value', '')
+                $('#search').trigger('click');
+            });
+            $("#all").click(function () {
+                $("#in").attr('value', '')
+                $('#search').trigger('click');
+            });
+
+        });
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

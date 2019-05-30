@@ -1,0 +1,60 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.TicketReply>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:red">@ViewData["Subject"]</h2>
+@Html.Raw(ViewData["Body"])
+
+<a asp-action="Create" asp-route-tid="@ViewData["Id"]" class="btn btn-success">اضف رد</a>
+<hr/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReplyDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.TicketId)
+        </th>*@
+
+            <th>
+                @Html.DisplayNameFor(model => model.SupportUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReplyDate)
+            </td>
+            <td>
+             
+                @Html.Raw(item.Body)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.TicketId)
+        </td>*@
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SupportUser.ArName)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<a asp-action="Create" asp-route-tid="@ViewData["Id"]" class="btn btn-success">اضف رد</a>

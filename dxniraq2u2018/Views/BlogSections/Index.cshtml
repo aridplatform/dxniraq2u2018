@@ -1,0 +1,37 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.BlogSection>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">انشاء قسم رئيسي جديد</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+          
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+
+                <a asp-action="Delete" asp-route-id="@item.Id">حذف</a> |
+                <a asp-controller="BlogPosts" asp-action="Create" asp-route-sid="@item.Id">انشاء موضوع جديد</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

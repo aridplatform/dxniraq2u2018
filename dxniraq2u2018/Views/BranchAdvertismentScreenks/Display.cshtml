@@ -1,0 +1,15 @@
+﻿@model dxniraq2u2018.Models.BranchAdvertismentScreenk
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutDisplay.cshtml";
+}
+<div>
+    <h3>    @Html.DisplayFor(model => model.Subject)</h3>
+
+    <dl class="dl-horizontal">
+
+        @Html.Raw(Model.Body)
+    </dl>
+</div>
+

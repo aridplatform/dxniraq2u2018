@@ -1,0 +1,257 @@
+﻿@model dxniraq2u2018.Models.InvoiceViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>تفاصيل الوصل</h2>
+
+<div>
+    <h4>Invoice # @Html.DisplayFor(model => model.Invoice.Id)</h4>
+    <hr />
+
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.DXNId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.Quantity)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.Product)
+            </th>
+
+            <th>
+                سعر المنتج
+            </th>
+
+            <th>
+                مجموع السعر
+            </th>
+
+            <th>
+                PV
+            </th>
+
+            <th>
+                صورة
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.InvoiceItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DXNId)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Quantity)
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalePrice)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPV)
+                </td>
+
+                <td>
+
+                    <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Product.Image)" width="100" height="90" />
+
+                </td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.Amount)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.Amount)
+    </dd>
+    @*<dt>
+            @Html.DisplayNameFor(model => model.Invoice.PaymentStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Invoice.PaymentStatus)
+        </dd>*@
+    @*<dt>
+            @Html.DisplayNameFor(model => model.PaymentMethodReference)
+        </dt>*@
+    @*<dd>
+            @Html.DisplayFor(model => model.PaymentMethodReference)
+        </dd>*@
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.IssuingDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.IssuingDate)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.Address)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.Address.AddressName) <br />  @Html.DisplayFor(model => model.Invoice.Address.FullAddress) <br /> المدينة / @Html.DisplayFor(model => model.Invoice.Address.City.ArCityName) <br /> اسم المستلم / @Html.DisplayFor(model => model.Invoice.Address.ContactPersonName) <br /> رقم النقال / @Html.DisplayFor(model => model.Invoice.Address.Mobile)
+    </dd>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Invoice.DriverId))
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice.Driver)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Invoice.Driver.ArName)
+        </dd>
+    }
+
+    @if ((Model.Invoice.PaymentStatus) == true)
+    {
+
+        <dt>
+            حالة الدفع
+        </dt>
+        <dd>
+            مكتمل
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice.PaidDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Invoice.PaidDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice.DeliveredDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Invoice.DeliveredDate)
+        </dd>
+    }
+    else
+    {
+        <dt>
+            حالة الدفع
+        </dt>
+        <dd>
+            غير مكتملة
+        </dd>
+    }
+
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.IsCalled)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.IsCalled)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.IsloggedToDxnSystem)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.IsloggedToDxnSystem)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.SystemTrackNo)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.SystemTrackNo)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.CustomerSatisfaction)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.CustomerSatisfaction)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.ReceivedByName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.ReceivedByName)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.ReceivedByMobile)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.ReceivedByMobile)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.ReceivedByRelationshipId)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.ReceivedByRelationshipId)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.Accountant)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.Accountant.ArName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.ApplicationUser)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.ApplicationUser.ArName) <br />
+        @Html.DisplayFor(model => model.Invoice.ApplicationUser.EnName) <br />
+        رقم العضوية : @Html.DisplayFor(model => model.Invoice.ApplicationUser.DxnId) <br />
+        رقم النقال : @Html.DisplayFor(model => model.Invoice.ApplicationUser.PhoneNumber)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.Branch)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.Branch.Name)
+    </dd>
+    @*<dt>
+            @Html.DisplayNameFor(model => model.Driver)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Driver.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod.Id)
+        </dd>*@
+</dl>
+<p align="left">
+    Total Price : @ViewData["Totalprice"] <br />
+    Total PV :  @ViewData["TotalPV"] <br />
+    <br />
+</p>
+
+@if ((Model.Invoice.InvoicePDF) != null)
+{<a target="_blank"  href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.FileFolder + "/" + Model.Invoice.InvoicePDF)">الفاتورة</a>}
+
+
+<br />
+
+<div>
+    <a asp-action="Print" asp-controller="Invoices" asp-route-id="@Model.Invoice.Id">طباعة</a> |
+    <a asp-action="Edit" asp-controller="Invoices" asp-route-id="@Model.Invoice.Id">تحرير</a> |
+    <a asp-action="Index">العودة الى قائمة الوصولات</a>
+</div>

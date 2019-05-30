@@ -1,0 +1,44 @@
+﻿@model dxniraq2u2018.Models.ShoppingCartItem
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف من سلة التسوق</h2>
+
+<h3>سيتم حذف المنتج من سلة التسوق بشكل نهائي. هل أنت متأكد ؟</h3>
+<div>
+   
+    <hr />
+
+    <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Product.Image)" width="100" height="90" />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DXNId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DXNId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductCode)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="حذف" class="btn btn-default" /> |
+        <a asp-action="Index">سلة التسوق</a>
+    </form>
+</div>

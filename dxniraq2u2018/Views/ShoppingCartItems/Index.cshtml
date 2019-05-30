@@ -1,0 +1,102 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.ShoppingCartItem>
+
+@{
+    ViewData["Title"] = "سلة التسوق";
+}
+
+<h2>سلة التسوق</h2>
+
+@ViewData["Status"]
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DXNId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+
+            <th>
+                سعر المنتج
+            </th>
+
+            <th>
+                مجموع السعر
+            </th>
+
+            <th>
+                PV
+            </th>
+
+            <th>
+                صورة
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DXNId)
+                </td>
+                <td>
+                    <a asp-action="RemoveFromCart" asp-route-id="@item.Id">-</a>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                    <a asp-action="AddToCart" asp-route-id="@item.Id">+</a>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalePrice)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPV)
+                </td>
+
+                <td>
+
+                    <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Product.Image)" width="100" height="90" />
+
+                </td>
+                <td>
+
+
+                    <a asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@*Total Quantities :  @ViewData["TotalQuantities"]<br />
+    Total weight : @ViewData["Totalweight"] <br />
+    Total Price : @ViewData["Totalprice"] <br />
+    Total SV :  @ViewData["TotalSV"] <br />*@
+<p align="left">
+    Total Price : @ViewData["Totalprice"] <br />
+    Total PV :  @ViewData["TotalPV"] <br />
+    <br />
+</p>
+
+<br />
+<a class="btn btn-danger" asp-controller="CategoryProducts" asp-action="Index"><span class="glyphicon glyphicon-list"></span> الاستمرار بالشراء</a>  |  <a class="btn btn-default" asp-action="ClearCart"><span class="glyphicon glyphicon-trash"></span>افراغ سلة التسوق </a> | <a class="btn btn-success" asp-action="Checkout"><span class="glyphicon glyphicon-check"></span>  الشحن الى العنوان >> </a>
+
+
+@*<a class="btn btn-success" asp-action="Checkout2Address"><span class="glyphicon glyphicon-check"></span> تقديم طلب الشراء الى العنوان >> </a>*@

@@ -1,0 +1,57 @@
+﻿@model dxniraq2u2018.Models.CategoryProductViewModel
+
+@{
+    ViewData["Title"] = "أقسام المنتجات";
+}
+
+<h2>عرض المنتجات</h2>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+            <th>
+                <span class="glyphicon glyphicon-th-list" title="@Html.DisplayNameFor(model => model.CategoryProduct.Name)">
+                    @*@Html.DisplayNameFor(model => model.CategoryProduct.Name)*@
+                        </span>
+</th>
+            <th>
+                <span class="glyphicon glyphicon-picture" title="@Html.DisplayNameFor(model => model.CategoryProduct.Image)">
+                    @*@Html.DisplayNameFor(model => model.CategoryProduct.Image)*@
+                </span>
+            </th>
+                    <th> 
+                        <span class="glyphicon glyphicon-scale" title="@Html.DisplayNameFor(model => model.NoOfItems)">
+                            @*@Html.DisplayNameFor(model => model.NoOfItems)*@
+                        </span>
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CategoryProducts)
+        {
+        <tr>
+            <td>
+                <a asp-controller="Products" asp-action="ListItems" asp-route-id="@item.Id">
+                  <span class="glyphicon glyphicon-list-alt"></span>  @Html.DisplayFor(modelItem => item.Name)
+                </a>
+            </td>
+            <td>
+                <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image   )" width="100" height="90" />
+
+            </td>
+           
+            <td> @Model.Products.Where(a => a.CategoryProductId == item.Id).Count()</td>
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-controller="Products" asp-action="ListItems" asp-route-id="@item.Id">عرض المنتجات</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+        </tr>
+        }
+    </tbody>
+</table>

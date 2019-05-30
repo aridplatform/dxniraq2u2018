@@ -1,0 +1,108 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Invoice>
+
+@{
+    ViewData["Title"] = "الوصولات";
+}
+
+<h2>الوصولات</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+            <th>
+                رقم الوصل
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IssuingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceivedByName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+             PDF
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IssuingDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentStatus)
+            </td>
+
+            <td>
+                @{TimeSpan a = DateTime.Now.Subtract(item.DeliveredDate);
+
+                    if (a.Days < 1000) {
+                        @Html.DisplayFor(modelItem => item.DeliveredDate)
+
+                        }
+
+                        else { <p>لا يوجد</p>}
+                    }
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceivedByName)
+            </td>
+
+            <td>
+                @if (item.AddressId != 1) { 
+
+                @Html.DisplayFor(modelItem => item.Address.AddressName)
+                }
+            </td>
+            <td>
+                @if (item.InvoicePDF != null)
+                {
+
+                 <a target="_blank" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.FileFolder  + "/" + item.InvoicePDF)">PDF</a>
+                }
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+
+                @if ((item.AddressId) == 1)
+                {
+                    <a style="color:red;" asp-action="ShipToAddress" asp-controller="Addresses" asp-route-id="@item.Id">اكمل الشحن الى العنوان >></a>
+
+                }
+                else
+                { <a asp-action="Details" asp-route-id="@item.Id">تفاصيل</a>}
+                |
+                @if ((item.PaymentStatus) == false)
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

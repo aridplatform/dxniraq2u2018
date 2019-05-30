@@ -1,0 +1,148 @@
+﻿
+@model dxniraq2u2018.Models.InvoiceViewModel  
+@{
+    ViewData["Title"] = "الوصولات";
+}
+
+<div class="form-group row col-lg-12">
+    <div class="col-lg-2">
+        <span class="glyphicon glyphicon-search" id="span" title="بحث"></span>
+        <span class="glyphicon glyphicon-remove" id="spanx" title="الغاء نتائج البحث"></span>
+    </div>
+    <div class="col-lg-6">
+        <form asp-controller="Invoices" asp-action="IndexAdmin" id="form" class="row">
+            <p>
+                <input id="in" type="text" name="SearchString">
+                <input type="submit" value="بحث" id="search" />
+            </p>
+        </form>
+    </div>
+</div>
+
+<h2>الوصولات</h2>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+
+<table class="display nowrap table table-hover  table-bordered">
+    <thead>
+        <tr>
+            <th>
+                رقم الوصل
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.IssuingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.PaymentStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.DeliveredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.ReceivedByName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.Address)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.ApplicationUserId)
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Invoices)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IssuingDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentStatus)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveredDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceivedByName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address.AddressName)
+                </td>
+
+                <td>
+                    <a asp-controller="ApplicationUsers" asp-action="Edit" asp-route-id="@item.ApplicationUserId">@Html.DisplayFor(modelItem => item.ApplicationUser.ArName)</a>
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+                    <a asp-action="DetailsAdmin" asp-route-id="@item.Id">تفاصيل</a> |
+                    <a asp-controller="ApplicationUsers" asp-action="ControlPanel" asp-route-id="@item.ApplicationUserId">لوحة التحكم</a> |
+                    <a asp-action="AdminDelete" asp-route-id="@item.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<br />
+<div page-model="@Model.PagingInfo" page-action="IndexAdmin" page-classes-enabled="true"
+     page-class="btn border" page-class-normal="btn btn-default active"
+     page-class-selected="btn btn-success active" class="btn-group m-1"></div>
+
+<style>
+    input[type='submit'], h3, label, .bold, h4, button {
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    dt {
+        text-align: left;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#form").hide();
+            $("#span").css('cursor', 'pointer');
+            $("#spanx").css('cursor', 'pointer');
+            $("#span").click(function () {
+                $("#form").slideToggle("slow");
+
+                //$("#span").toggleClass(".glyphicon glyphicon-remove");
+
+            });
+            $("#spanx").click(function () {
+                $("#in").attr('value', '')
+                $('#search').trigger('click');
+            });
+            $("#all").click(function () {
+                $("#in").attr('value', '')
+                $('#search').trigger('click');
+            });
+
+        });
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

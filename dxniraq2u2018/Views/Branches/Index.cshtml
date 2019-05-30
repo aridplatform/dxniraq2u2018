@@ -1,0 +1,88 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Branch>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>الفروع</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GoogleAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Longitude)
+                </th>*@
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Latitude)
+                </th>*@
+                @*<th>
+                    @Html.DisplayNameFor(model => model.BranchPhoto)
+                </th>*@
+                @*<th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.City)*@
+                المحافظة
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoogleAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchPhoto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.City.ArCityName)
+            </td>
+            <td>
+
+                @if (User.IsInRole("Admins"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a>
+
+                    <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

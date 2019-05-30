@@ -1,0 +1,139 @@
+﻿@model dxniraq2u2018.Models.InvoiceViewModel
+
+<h3 align="center">WWW.DXNIRAQ2U.COM</h3>
+<p align="left">
+    Invoice #@Html.DisplayFor(model => model.Invoice.Id)<br />
+    @Html.DisplayFor(model => model.Invoice.ApplicationUser.ArName) |
+
+    @Html.DisplayFor(model => model.Invoice.ApplicationUser.EnName)<br />
+    @Html.DisplayFor(model => model.Invoice.ApplicationUser.DxnId) <br />
+    @Html.DisplayFor(model => model.Invoice.ApplicationUser.PhoneNumber)
+
+</p>
+
+
+
+
+<table class="table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.DXNId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.Quantity)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.Product.ProductNameArabic)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.Product.ProductNameEnglish)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.Product)
+            </th>
+
+            <th>
+                سعر المنتج
+            </th>
+
+            <th>
+                مجموع السعر
+            </th>
+
+            <th>
+                PV
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.InvoiceItems)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DXNId)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Quantity)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductNameArabic )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductNameEnglish )
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalePrice)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTotal)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPV)
+            </td>
+
+           
+            <td></td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<hr/>
+<table class="table-bordered">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Invoice.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Invoice.Amount) $
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            PV
+        </td>
+        <td>
+            @ViewData["TotalPV"]
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Invoice.IssuingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Invoice.IssuingDate)
+        </td>
+    </tr>
+
+    <tr>
+    <td>
+        @Html.DisplayNameFor(model => model.Invoice.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Invoice.Address.ContactPersonName) <br /> رقم النقال / @Html.DisplayFor(model => model.Invoice.Address.Mobile)
+  <br />  @Html.DisplayFor(model => model.Invoice.Address.FullAddress) <br /> المدينة / @Html.DisplayFor(model => model.Invoice.Address.City.ArCityName)
+    </td>
+    </tr>
+
+</table>
+
+

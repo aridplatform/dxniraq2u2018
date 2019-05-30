@@ -1,0 +1,85 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.Address>
+
+@{
+    ViewData["Title"] = "ادارة العناوين";
+}
+
+<h2>ادارة العناوين</h2>
+
+<p>
+       <a asp-action="Create">اضف عنوان جديد</a>
+
+</p>
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.AddressName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactPersonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.UserComment)
+            </th>*@
+
+
+            @*<th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FullAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPersonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.UserComment)
+            </td>*@
+
+
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.ArName)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.City.ArCityName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">تفاصيل</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

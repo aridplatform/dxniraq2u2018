@@ -1,0 +1,74 @@
+﻿@model ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table-hover table table-striped table-bordered dt-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DXNId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @*<tbody>
+        @foreach (var item in model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DXNId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                    <a asp-action="RemoveFromCart" asp-route-id="@item.Id">-</a>
+                    <a asp-action="AddToCart" asp-route-id="@item.Id">+</a>
+                </td>
+            </tr>
+        }
+    </tbody>*@
+</table>
+
+
+  Total Quantities :  @ViewData["TotalQuantities"]<br />
+    Total weight : @ViewData["Totalweight"] <br />
+    Total Price : @ViewData["Totalprice"] <br />
+    Total PV :  @ViewData["TotalPV"] <br />
+    Total SV :  @ViewData["TotalSV"] <br />
+    <br />
+
+    @{
+        var address = "address";
+    }
+    Address :
+    <select class="form-control" asp-for="@address" asp-items="ViewBag.Address"></select>
+
+    <br />
+    <a class="btn btn-default" asp-action="ClearCart">Clear</a> | <a class="btn btn-default" asp-action="Checkout">Checkout</a>

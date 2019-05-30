@@ -1,0 +1,191 @@
+﻿@model dxniraq2u2018.Models.CommunityViewModel
+@{
+    ViewData["Title"] = Html.DisplayFor(model => model.Community.Name);
+}
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<br />
+@if (Model.Community.BgImage != null)
+{
+    <img class="img-rounded img-responsive" src="@Url.Content("~/" + @dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Community.BgImage)" />
+}
+
+<h2>
+    @if (Model.Community.Logo != null)
+    {
+        <img class="img-rounded" width="50" height="50" src="@Url.Content("~/" + @dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Community.Logo)" />
+    }
+    else
+    {
+        <img class="img-rounded" width="50" height="50" src="@Url.Content("~/" + @dxniraq2u2018.Properties.Resources.imgFolder + "/" + Model.Community.ApplicationUser.ProfileImage)" />
+    }
+    @Html.DisplayFor(model => model.Community.Name) | @Html.DisplayFor(model => model.Community.ShortName)
+
+
+    @{
+        ApplicationUser currentUser = null;
+        if (SignInManager.IsSignedIn(User))
+        {
+            currentUser = await UserManager.GetUserAsync(User);
+
+            if (Model.CommunityFollower.Where(f => f.CommunityId == Model.Community.Id && f.ApplicationUserId == currentUser.Id).Count() > 0)
+            {
+                @*<a id="followbtn" class="btn btn-default" style="color:black;font-weight:800">@Localizer["Unfollow"]</a>*@
+                <a id="followbtn" class="btn btn-default">الغاء المتابعة</a>
+            }
+            else
+            {
+                <a id="followbtn" class="btn btn-success">متابعة</a>
+            }
+
+        }
+    }
+
+    <span> المتابعون :</span>
+    <span id="counter">  @ViewData["Count"]</span>
+    @*<a asp-controller="CommunityFollowers" asp-action="Index" asp-route-id="@ViewData["CommunityId"]"><span title="عرض جميع المتابعون" class="glyphicon glyphicon-user"></span></a>*@
+</h2>
+<p>
+    @Html.Raw(Model.Community.Description)
+</p>
+<br />
+ @if (SignInManager.IsSignedIn(User))
+        {
+if (Model.Community.ApplicationUserId == currentUser.Id)
+{
+    <p>
+        <a class="btn btn-success" asp-controller="Posts" asp-action="CreateBlog" asp-route-cid="@ViewData["CommunityId"]"> <span class="glyphicon glyphicon-plus"></span> اضافة موضوع</a>
+        @*<a class="btn btn-danger" asp-action="Delete">حذف مدونة عالم</a>*@
+        <a class="btn btn-default" asp-route-id="@Html.Raw(Model.Community.Id)" asp-action="Edit"><span class="glyphicon glyphicon-cog"></span> الاعدادات</a>
+    </p>
+    } }
+    <form>
+        <input type="text" name="keyword">
+        <input type="submit" value="ابحث في المدونة" />
+    </form>
+
+<div>
+    <table class="table-hover table table-striped table-bordered dt-responsive">
+        <thead>
+            <tr>
+                @*<th><span class="glyphicon glyphicon-scale"></span></th>*@
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Post.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Post.DateTime)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Post.Tags)
+                    </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Post.PostType)
+                    </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Post.ApplicationUser)
+                    </th>*@
+                <th><span title="عدد التعليقات" class="glyphicon glyphicon-comment"></span></th>
+                @*<th><span title="تمت اجابته" class="glyphicon glyphicon-ok"></span></th>*@
+                <th><span title="عدد المشاهدات" class="glyphicon glyphicon-eye-open"></span></th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Posts)
+            {
+                <tr>
+                    @*<td>
+                            @Model.PostMetrics.Where(a => a.PostId == item.Id).Sum(a => a.VoteValue)
+                        </td>*@
+                    <td>
+                        @if (item.Image != null)
+                        {
+                            <img width="100" class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image)" />
+                        }
+                        </td>
+                    <td>
+                        <a asp-controller="Posts" asp-action="Details" asp-route-id="@item.Id">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Tags)
+                        </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.PostType)
+                        </td>*@
+                    @*<td>
+                            <a target="_blank" asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.ApplicationUserId">@Html.DisplayFor(modelItem => item.ApplicationUser.ArName)</a>
+                        </td>*@
+
+                    <td>
+                        @Model.PostComments.Where(a => a.PostId == item.Id).Count()
+                    </td>
+                    @*<td>
+                        @if (Model.PostComments.Where(a => a.PostId == item.Id & a.IsBestAnswer == true).Count() > 0)
+                        {
+                            <span title="تمت اجابته" class="glyphicon glyphicon-ok btn-success"></span>
+                        }
+                                            </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reads)
+                    </td>
+
+                    <td>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            if (User.IsInRole("Admins") || item.ApplicationUserId == currentUser.Id)
+                            {
+                                <a asp-controller="Posts" asp-action="EditBlog" asp-route-id="@item.Id"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a asp-controller="Posts" asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span></a>
+                            }
+                        }
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#followbtn").click(
+                function () {
+                    if ($("#followbtn").text() == "متابعة")
+                    {
+                        var FollowOptions = {};
+                        @*FollowOptions.url = "/@CultureInfo.CurrentCulture.Name/Communities/Follow/";*@
+                        FollowOptions.url = "/Blogs/Follow/";
+                        FollowOptions.data = { id: "@Model.Community.Id" };
+                        FollowOptions.success = function () {
+                            $("#followbtn").prop("text", "الغاء المتابعة");
+                            $('#counter').text(function (i, oldVal) {
+                                return parseInt(oldVal, 10) + 1
+                            })
+                        };
+              $.ajax(FollowOptions);
+                    }
+                    else
+                    {
+                        var FollowOptions = {};
+                        FollowOptions.url = "/Blogs/Unfollow/";
+                        FollowOptions.data = { id: "@Model.Community.Id" };
+                        FollowOptions.success = function () {
+                            $("#followbtn").prop("text", "متابعة");
+                            $('#counter').text(function (i, oldVal) {
+                                return parseInt(oldVal, 10) - 1
+                            })
+                           };
+                        $.ajax(FollowOptions);
+                    }
+                });
+        });
+    </script>
+}

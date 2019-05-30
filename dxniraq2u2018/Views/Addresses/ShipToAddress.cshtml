@@ -1,0 +1,137 @@
+﻿@model dxniraq2u2018.Models.AddressViewModel
+
+
+<p>
+    اختر العنوان الذي تود الشحن اليه او  <a asp-action="Create"> اضف عنوان جديد</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.DXNId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.Quantity)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceItem.Product)
+            </th>
+
+            <th>
+                سعر المنتج
+            </th>
+
+            <th>
+                مجموع السعر
+            </th>
+
+            <th>
+                PV
+            </th>
+
+            <th>
+                صورة
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.InvoiceItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DXNId)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Quantity)
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalePrice)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPV)
+                </td>
+
+                <td>
+
+                    <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Product.Image)" width="100" height="90" />
+
+                </td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Invoice.Amount)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Invoice.Amount)
+    </dd>
+</dl>
+<hr/>
+
+
+<h3>اختر العنوان الذي تود الشحن اليه</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Address.FullAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address.ContactPersonName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Address.AddressName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Address.City)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Addresses)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactPersonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.ArCityName)
+                </td>
+                <td>
+                    <a asp-action="Ship" asp-route-aid="@item.Id"> اشحن الى هذا العنوان <span class="glyphicon glyphicon-new-window"></span></a>
+                                                        </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

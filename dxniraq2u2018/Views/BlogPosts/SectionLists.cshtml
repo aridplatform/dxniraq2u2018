@@ -1,0 +1,28 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.BlogPost>
+
+
+@foreach (var item in Model.OrderByDescending(a => a.Id))
+{
+    <div class="col-sm-4">
+        <div class="panel panel-default" style="min-height:600px">
+            <div class="panel-body">
+                <h3><span>@Html.DisplayFor(modelitem => item.Title)</span></h3>
+                <img src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image  )" style="min-height:300px" class="img-responsive" />
+                <h4>
+                    <span>
+                        @if (item.Introduction.Length > 100)
+                        {
+                        @Html.Raw(item.Introduction.Substring(0, 100))
+                        }
+                        else
+                        {@Html.Raw(item.Introduction)}
+                    </span>
+                </h4>
+            </div>
+            <div class="panel-footer clearfix">
+                @Html.ActionLink("التفاصيل", "Details", new { id = item.Id }, new { @class = "btn btn-default pull-right" })
+            </div>
+        </div>
+    </div>
+}
+

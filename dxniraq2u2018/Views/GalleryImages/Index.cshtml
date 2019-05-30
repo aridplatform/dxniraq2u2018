@@ -1,0 +1,46 @@
+﻿@model IEnumerable<dxniraq2u2018.Models.GalleryImage>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ألبوم صور / @ViewData["Albumname"]</h2>
+
+<p>
+    <a asp-route-gid="@ViewData["id"]" asp-action="Create">اضف صورة</a> | <a target="_blank"  asp-action="Display" asp-route-id="@ViewData["id"]" >عرض الألبوم للنشر</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+               
+                <th>
+                    @Html.DisplayNameFor(model => model._thumb)
+                </th>
+         
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+           
+            <td>
+                               <img class="img-rounded" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item._thumb)" width="100" height="100" />
+            </td>
+         
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تحرير</a> |
+                
+                <a asp-action="Delete" onclick="return confirm('Are you sure you want to delete?');" asp-route-id="@item.Id">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
