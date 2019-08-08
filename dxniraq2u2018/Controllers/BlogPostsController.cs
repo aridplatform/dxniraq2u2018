@@ -55,7 +55,7 @@ namespace dxniraq2u2018.Controllers
         {
 
 
-            var applicationDbContext = _context.BlogPosts.Where(a => a.BlogCategory.BlogSectionId == id)
+            var applicationDbContext = _context.BlogPosts.OrderByDescending(a=>a.Id).Where(a => a.BlogCategory.BlogSectionId == id).Take(20)
 .Include(b => b.AdminUser)
 .Include(b => b.ApplicationUser)
 .Include(b => b.BlogCategory);

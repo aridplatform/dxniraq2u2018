@@ -84,7 +84,7 @@
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Instructor.ArName)
+                    <a target="_blank" asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.Instructor.Id"> @Html.DisplayFor(modelItem => item.Instructor.ArName)</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Seats)
@@ -100,7 +100,7 @@
                         @Html.DisplayFor(modelItem => item.IsAdminApproved)
                     </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.Branch.Name)
+                    <a target="_blank" asp-controller="Branches" asp-action="Details" asp-route-id="@item.Branch.Id">  @Html.DisplayFor(modelItem => item.Branch.Name)</a>
                 </td>
 
                 <td>

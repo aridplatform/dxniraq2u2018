@@ -43,13 +43,13 @@ namespace dxniraq2u2018.Controllers
             if (string.IsNullOrEmpty(SearchString))
             {
                 LectureViewModel = new LectureViewModel()
-                { Lectures = _context.Lectures.Include(a=>a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date) };
+                { Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date) };
             }
             else if (!string.IsNullOrEmpty(SearchString))
             {
                 LectureViewModel = new LectureViewModel()
                 {
-                    Lectures = _context.Lectures.Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date).Where(a => a.Title.Contains(SearchString) || a.Content.Contains(SearchString) || a.Branch.Name.Contains(SearchString) || a.Instructor.ArName.Contains(SearchString))
+                    Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date).Where(a => a.Title.Contains(SearchString) || a.Content.Contains(SearchString) || a.Branch.Name.Contains(SearchString) || a.Instructor.ArName.Contains(SearchString))
                 };
             }
 
@@ -110,9 +110,10 @@ namespace dxniraq2u2018.Controllers
 
             var email = Email
                 .From("info@almahfal.org")
-                .To("info@filspay.com", "bob")
-                .Subject("Saif")
-                .Body("Testing");
+                .To("info@filspay.com", "Saif")
+                 .CC("yousifalsewaidi@gmail.com", "Yousif")
+                .Subject("New Course Added")
+                .Body("Design please");
 
             email.SendAsync();
         }
@@ -249,6 +250,10 @@ namespace dxniraq2u2018.Controllers
 
                     _context.Update(lecture);
                     await _context.SaveChangesAsync();
+
+                    if (lecture.IsAdminApproved==true ) {
+                        SendEmailAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {

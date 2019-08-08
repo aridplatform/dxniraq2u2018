@@ -34,7 +34,7 @@
         <dd>
             @Html.DisplayFor(model => model.Contact)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Longitude)
         </dt>
         <dd>
@@ -45,7 +45,7 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Latitude)
-        </dd>
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.BranchPhoto)
         </dt>
@@ -67,6 +67,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    <a asp-action="Index">عرض جميع الفروع</a>
 </div>

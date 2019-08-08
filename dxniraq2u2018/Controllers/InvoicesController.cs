@@ -39,7 +39,7 @@ namespace dxniraq2u2018.Controllers
             if (string.IsNullOrEmpty(SearchString))
             {
                 InvoiceViewModel = new InvoiceViewModel()
-                { Invoices = _context.Invoices.Include(a=>a.ApplicationUser).OrderByDescending(a => a.Id) };
+                { Invoices = _context.Invoices.Where(a => a.AddressId != 1).Include(a => a.ApplicationUser).OrderByDescending(a => a.Id) };
             }
             else if (!string.IsNullOrEmpty(SearchString))
             {
@@ -47,7 +47,7 @@ namespace dxniraq2u2018.Controllers
                 {
                     if (_context.Invoices.SingleOrDefault(a => a.Id == Convert.ToInt32(SearchString)) != null)
                     {
-                        return RedirectToAction("Edit", "Invoices", new { id = Convert.ToInt32(SearchString)});
+                        return RedirectToAction("Edit", "Invoices", new { id = Convert.ToInt32(SearchString) });
                     }
                     else
                     {
