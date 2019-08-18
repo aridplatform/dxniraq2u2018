@@ -43,13 +43,13 @@ namespace dxniraq2u2018.Controllers
             if (string.IsNullOrEmpty(SearchString))
             {
                 LectureViewModel = new LectureViewModel()
-                { Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date) };
+                { Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now & a.IsAdminApproved == true).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date) };
             }
             else if (!string.IsNullOrEmpty(SearchString))
             {
                 LectureViewModel = new LectureViewModel()
                 {
-                    Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date).Where(a => a.Title.Contains(SearchString) || a.Content.Contains(SearchString) || a.Branch.Name.Contains(SearchString) || a.Instructor.ArName.Contains(SearchString))
+                    Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now & a.IsAdminApproved == true).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date).Where(a => a.Title.Contains(SearchString) || a.Content.Contains(SearchString) || a.Branch.Name.Contains(SearchString) || a.Instructor.ArName.Contains(SearchString))
                 };
             }
 
@@ -146,7 +146,10 @@ namespace dxniraq2u2018.Controllers
             ViewData["InstructorId"] = new SelectList(_context.ApplicationUser.Where(a => a.IsInstructor == true), "Id", "ArName");
             //ViewData["LevelType"] = new SelectList(Common.CourseLevel , "Id", "ArName");
 
-            ViewData["CurrentDate"] = DateTime.Now;
+            DateTime today = DateTime.Now;
+            DateTime answer = today.AddDays(7);
+
+            ViewData["CurrentDate"] = answer;
             return View();
         }
 
@@ -161,6 +164,13 @@ namespace dxniraq2u2018.Controllers
         {
             if (ModelState.IsValid)
             {
+                DateTime today = DateTime.Now;
+                DateTime answer = today.AddDays(7);
+
+                //if (lecture.Date < answer)
+                //{
+                //    return RedirectToAction(nameof(Index));
+                //}
                 lecture.IsOpen = true;
                 lecture.IsOnline = false;
                 lecture.IsAdminApproved = false;
@@ -251,7 +261,8 @@ namespace dxniraq2u2018.Controllers
                     _context.Update(lecture);
                     await _context.SaveChangesAsync();
 
-                    if (lecture.IsAdminApproved==true ) {
+                    if (lecture.IsAdminApproved == true)
+                    {
                         SendEmailAsync();
                     }
                 }
