@@ -1,0 +1,435 @@
+﻿@model Export
+@{
+    Layout = null;
+
+    //var base64 = Convert.ToBase64String(Model.Profile);
+    //var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>DXN</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+    <style type="text/css">
+
+        html {
+            -webkit-font-smoothing: antialiased !important;
+            direction: rtl;
+            height: 100%;
+        }
+
+        body {
+            background: #FFF;
+            font-family: Verdana, Geneva, sans-serif;
+            direction: rtl;
+            margin: 0px;
+            height: 100%;
+        }
+
+        page {
+            background: white;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0cm;
+            box-shadow: none;
+            height: 100%;
+        }
+
+            page[size="A4"] {
+                height: 21cm;
+                width: 29.7cm;
+            }
+
+        .main-page {
+            border: 0px solid #000;
+            padding: 10px;
+            font-size: 12px;
+            color: #000;
+            font-family: Verdana, Geneva, sans-serif;
+            line-height: 18px;
+            position: relative;
+            height: 100%;
+            background: url(/exportimage/background.jpg) top center no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        p {
+            line-height: 20px;
+            padding: 0px;
+            margin: 5px 0 5px 0;
+        }
+
+        .pagebase {
+            margin: 0px 0px;
+            border: 0px solid #000;
+            padding: 0px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .arabic {
+            direction: rtl;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .profile-image {
+            position: absolute;
+            right: 120px;
+            top: 120px;
+            border: #f2f8a5 solid 3px;
+            width: 100px;
+        }
+
+            .profile-image img {
+                display: inline-block;
+                width: 100%;
+            }
+
+        .details {
+            max-width: 405px;
+            width: 100%;
+            position: absolute;
+            top: 430px;
+            right: 30px;
+        }
+
+            .details table tr td {
+                padding: 15px 5px; font-size:16px; vertical-align:top; line-height:30px;
+            }
+
+            .details .value {
+                font-weight: 700; color:#1b3e8e;
+            }
+            .text-center{
+                text-align:center;
+            }
+
+        @@media print {
+            body, page {
+                margin: 0;
+                box-shadow: 0;
+            }
+
+            @@page {
+                margin: 0cm;
+            }
+
+            .pagebreak {
+                page-break-before: always;
+            }
+            /* page-break-after works, as well */
+            .pagebase {
+            }
+
+            page[size="A4"] {
+                padding: 0mm;
+            }
+
+            .green {
+                background-color: #004752 !important;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .main-page {
+                background: url(/exportimage/background.jpg) top center no-repeat !important;
+                background-size: 100% 100% !important;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .details .value {
+                color:#1b3e8e !important;  -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+    <page size="A4">
+        <div class="main-page">
+            <div class="pagebase">
+
+                <div class="profile-image">
+                    <img src="@Url.Content( "~/images/"+  Model.Profile)" />
+                    <span class="value">@Model.Name</span>
+                </div>
+                <div class="details" dir="rtl">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                           
+                            <td colspan="2" class=" text-center">
+                                <div class="arabic">لخطوات الرئيسية في التعامل مع الشركة</div>
+                            <div class="value">@Model.LectureName</div></td>
+                        </tr>
+                        <tr>
+                           
+                            <td colspan="2" class="value text-center">@Model.date.ToShortDateString()</td>
+                        </tr>
+                        <tr>
+                            
+                            <td colspan="2" class="value text-center arabic"> الساعة @Model.date.ToShortTimeString() مساء</td>
+                        </tr>
+                        <tr>
+                            
+                            <td colspan="2" class="value text-center arabic"> فرع البصرة -@Model.Venue </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+    </page>
+</body>
+</html>
+
+
+
+
+@*<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>DXN</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </head>
+
+    <body>
+        <style type="text/css">
+
+            html {
+                -webkit-font-smoothing: antialiased !important;
+                direction: ltr;
+                height: 100%;
+            }
+
+            body {
+                background: #FFF;
+                font-family: Verdana, Geneva, sans-serif;
+                direction: ltr;
+                margin: 0px;
+                height: 100%;
+            }
+
+            page {
+                background: white;
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 0cm;
+                box-shadow: none;
+                height: 100%;
+            }
+
+                page[size="A4"] {
+                    width: 21cm;
+                    height: 29.7cm;
+                }
+
+            .main-page {
+                border: 0px solid #000;
+                padding: 10px;
+                font-size: 12px;
+                color: #000;
+                font-family: Verdana, Geneva, sans-serif;
+                line-height: 18px;
+                position: relative;
+                height: 100%;
+                background: url(/exportimage/background.jpg) top center no-repeat;
+                background-size: 100%;
+            }
+
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            p {
+                line-height: 20px;
+                padding: 0px;
+                margin: 5px 0 5px 0;
+            }
+
+            .pagebase {
+                margin: 0px 0px;
+                border: 0px solid #000;
+                padding: 0px;
+            }
+
+            .clear {
+                clear: both;
+            }
+
+            .right {
+                float: right;
+            }
+
+            .left {
+                float: left;
+            }
+
+            .arabic {
+                direction: rtl;
+            }
+
+            .text-right {
+                text-align: right;
+            }
+
+            .text-left {
+                text-align: left;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .profile-image {
+                position: absolute;
+                right: 65px;
+                top: 90px;
+                border: #f2f8a5 solid 3px;
+                width: 100px;
+            }
+
+                .profile-image img {
+                    display: inline-block;
+                    width: 100%;
+                }
+
+            .details {
+                max-width: 325px;
+                width: 100%;
+                position: absolute;
+                top: 300px;
+                right: 0;
+            }
+
+                .details table tr td {
+                    padding: 5px 5px;
+                }
+
+                .details .value {
+                    font-weight: 700;
+                }
+
+            @@media print {
+                body, page {
+                    margin: 0;
+                    box-shadow: 0;
+                }
+
+                @@page {
+                    margin: 0cm;
+                }
+
+                .pagebreak {
+                    page-break-before: always;
+                }
+                /* page-break-after works, as well */
+                .pagebase {
+                }
+
+                page[size="A4"] {
+                    padding: 0mm;
+                }
+
+                .green {
+                    background-color: #004752 !important;
+                    -webkit-print-color-adjust: exact;
+                }
+
+                .main-page {
+                    background: url(/exportimage/background.jpg) top center no-repeat !important;
+                    background-size: 100% !important;
+                    -webkit-print-color-adjust: exact;
+                }
+            }
+        </style>
+        <page size="A4">
+            <div class="main-page">
+                <div class="pagebase">
+
+                    <div class="profile-image">
+                        <img src="@Url.Content( "~/images/"+  Model.Profile)" />
+                        <span class="value">@Model.Name</span>
+                    </div>
+
+                    <div class="details" dir="rtl">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                            <tr>
+                                <td>Lecture Name</td>
+                                <td class="value">@Model.LectureName</td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td class="value">@Model.date.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td>Time</td>
+                                <td class="value">@Model.date.ToShortTimeString()</td>
+                            </tr>
+                            <tr>
+                                <td>Venue</td>
+                                <td class="value">@Model.Venue</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </page>
+    </body>
+    </html>*@

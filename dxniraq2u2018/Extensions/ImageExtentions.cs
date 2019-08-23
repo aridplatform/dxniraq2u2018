@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 
 namespace System.Drawing
@@ -43,6 +44,19 @@ namespace System.Drawing
                 current.Save(stream, current.RawFormat);
                 return stream.ToArray();
             }
+        }
+        public static byte[] ToByteArray(this Bitmap bitmap)
+        {
+            byte[] result = null;
+
+            if (bitmap != null)
+            {
+                MemoryStream stream = new MemoryStream();
+                bitmap.Save(stream, ImageFormat.Bmp);
+                result = stream.ToArray();
+            }
+
+            return result;
         }
     }
 }

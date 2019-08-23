@@ -3,557 +3,801 @@
 @model dxniraq2u2018.Models.HomeViewModel
 
 @{
+
+
     ViewData["Title"] = "الرئيسة";
-    Layout = "~/Views/Shared/_DXNHome2019.cshtml";
+    Layout = "~/Views/Shared/_DXNHome.cshtml";
+
 }
 
+<!-- Main Slider Section Starts -->
+<section class="mainslider" id="mainslider">
+    <!-- Slider Hero Starts -->
+    <div class="rev_slider_wrapper fullwidthbanner-container dark-slider" data-alias="vimeo-hero" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+        <!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode -->
+        <div id="rev_slider" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.0.7">
+            <ul>
+                <!-- SLIDE  -->
+                <li data-index="rs-18" data-transition="zoomin" data-slotamount="7" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-thumb="img/revolution-slider/kenburns/thumb1.jpg" data-rotate="0" data-saveperformance="off" data-title="Ken Burns" data-description="">
+                    <!-- MAIN IMAGE -->
+                    <img src="img/revolution-slider/kenburns/kenburns1.jpg" data-bgposition="center center" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="180" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    <!-- LAYERS -->
+                    <!-- LAYER NR. 1 -->
+                    <div class="tp-caption NotGeneric-Title   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['70','70','70','45']" data-lineheight="['70','70','70','50']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitout="none" data-responsive_offset="on" data-elementdelay="0.05" style="z-index: 5; white-space: nowrap;font-weight:600;">
+                        منتجات صحية طبيعية
+                    </div>
+                    <!-- LAYER NR. 2 -->
+                    <div class="tp-caption NotGeneric-SubTitle   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['52','52','52','51']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1500" data-responsive_offset="on" style="z-index: 6; white-space: nowrap;">
+                        العودة الى الطبيعية
+                    </div>
+                    <!-- LAYER NR. 3 -->
+                    <div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-style_hover="cursor:default;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="2000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; white-space: nowrap;">
+                        <i class="pe-7s-refresh"></i>
+                    </div>
+                    <!-- LAYER NR. 4 -->
+                    <div class="tp-caption" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['150','97','90','90']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);" data-transform_in="y:100px;sX:1;sY:1;opacity:0;s:2000;e:Power3.easeInOut;" data-transform_out="y:50px;opacity:0;s:1000;e:Power2.easeInOut;" data-start="750" data-splitin="none" data-splitout="none" data-responsive_offset="on" data-responsive="off" style="z-index: 11; white-space: nowrap;text-transform:left;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"><a href="#about" class="custom-button slider-button scroll-to-target">المزيد عن فرصة DXN</a></div>
+                </li>
+                <!-- SLIDE  -->
+                <li data-index="rs-2" data-transition="zoomin" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="img/revolution-slider/kenburns/thumb2.jpg" data-rotate="0" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="Intro" data-description="">
+                    <!-- MAIN IMAGE -->
+                    <img src="img/revolution-slider/kenburns/kenburns2.jpg" data-bgposition="center center" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="180" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    <!-- LAYERS -->
+                    <!-- LAYER NR. 1 -->
+                    <div class="tp-caption NotGeneric-Title   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['70','70','70','45']" data-lineheight="['70','70','70','50']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitout="none" data-responsive_offset="on" data-elementdelay="0.05" style="z-index: 5; white-space: nowrap;font-weight:600;">
+                        فرصة عمل
+                    </div>
+                    <!-- LAYER NR. 2 -->
+                    <div class="tp-caption NotGeneric-SubTitle   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['52','52','52','51']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 6; white-space: nowrap;">
+                        عالم واحد ... سوق واحد
+                    </div>
+                    <!-- LAYER NR. 3 -->
+                    <div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-style_hover="cursor:default;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="2000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; white-space: nowrap;">
+                        <i class="pe-7s-refresh"></i>
+                    </div>
+                    <!-- LAYER NR. 4 -->
+                    <div class="tp-caption" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['150','97','90','90']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);" data-transform_in="y:100px;sX:1;sY:1;opacity:0;s:2000;e:Power3.easeInOut;" data-transform_out="y:50px;opacity:0;s:1000;e:Power2.easeInOut;" data-start="750" data-splitin="none" data-splitout="none" data-responsive_offset="on" data-responsive="off" style="z-index: 11; white-space: nowrap;text-transform:left;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"><a href="#about" class="custom-button slider-button scroll-to-target">إقرأ المزيد عنّا</a></div>
+                </li>
+                <!-- SLIDE  -->
+                <li data-index="rs-3" data-transition="zoomin" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="img/revolution-slider/kenburns/thumb3.jpg" data-rotate="0" data-fsmasterspeed="300" data-fsslotamount="7" data-saveperformance="off" data-title="Intro" data-description="">
+                    <!-- MAIN IMAGE -->
+                    <img src="img/revolution-slider/kenburns/kenburns3.jpg" data-bgposition="center center" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="180" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    <!-- LAYERS -->
+                    <!-- LAYER NR. 1 -->
+                    <div class="tp-caption NotGeneric-Title   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['70','70','70','45']" data-lineheight="['70','70','70','50']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitout="none" data-responsive_offset="on" data-elementdelay="0.05" style="z-index: 5; white-space: nowrap;font-weight:600;">
+                        منتجات طبيعية من ماليزيا
+                    </div>
+                    <!-- LAYER NR. 2 -->
+                    <div class="tp-caption NotGeneric-SubTitle   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['52','52','52','51']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 6; white-space: nowrap;">
+                        منتجات الشركة متوفرة في 10 فرع في العراق
+                    </div>
+                    <!-- LAYER NR. 3 -->
+                    <div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-0" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-style_hover="cursor:default;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="2000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; white-space: nowrap;">
+                        <i class="pe-7s-refresh"></i>
+                    </div>
+                    <!-- LAYER NR. 4 -->
+                    <div class="tp-caption" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['150','97','90','90']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;" data-style_hover="c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);" data-transform_in="y:100px;sX:1;sY:1;opacity:0;s:2000;e:Power3.easeInOut;" data-transform_out="y:50px;opacity:0;s:1000;e:Power2.easeInOut;" data-start="750" data-splitin="none" data-splitout="none" data-responsive_offset="on" data-responsive="off" style="z-index: 11; white-space: nowrap;text-transform:left;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"><a href="#about" class="custom-button slider-button scroll-to-target">إقرأ المزيد عنّا</a></div>
+                </li>
+            </ul>
+            <div class="tp-static-layers"></div>
+            <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+        </div>
+    </div>
+    <!-- END REVOLUTION SLIDER -->
+    <!-- Slider Hero Ends -->
+</section>
+<!-- Main Slider Section Ends -->
+<!-- About Section Starts -->
+<section id="about" class="about">
 
 
-<!--About Area Start-->
-<div class="about-area">
+
+    <!-- Container Starts -->
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <div class="about-container">
-                    <h3>لماذا DXN ؟</h3>
+        <!-- Main Heading Starts -->
+        <div class="text-center top-text">
+            <h1><span>شركة</span> رائد الخير</h1>
+            <h4>من نحن ؟</h4>
+        </div>
+        <!-- Main Heading Ends -->
+        <!-- Divider Starts -->
+        <div class="divider text-center">
+            <span class="outer-line"></span>
+            <span class="fa fa-user" aria-hidden="true"></span>
+            <span class="outer-line"></span>
+        </div>
+        <!-- Divider Ends -->
+        <!-- About Content Starts -->
+        <div class="row about-content">
+            <div class="col-sm-12 col-md-12 col-lg-6 about-left-side">
+                <h3 class="title-about"> <strong>الوكيل الرسمي في العراق</strong></h3>
+                <hr>
+
+                <p>شركة رائد الخير الوكيل الرسمي والحصري لشركة DXN  الماليزية في العراق. تم افتتاح 10 أفرع للشركة في مختلف المدن العراقية. وتم توفير جملة من الخدمات لاعضاء الشركة في العراق.</p>
+
+                @*<a class="custom-button scroll-to-target" href="#portfolio">اضغط هنا للاطلاع على ابرز المنتجات المتوفرة في العراق</a>*@
+
+                <h3>نظام ادارة الاعضاء</h3>
+                <p>نظام الكتروني آمن يتيح لاعضاء الشركة في العراق الاستفادة من جملة من الخدمات منها التسوق الالكتروني ومتابعة الاعضاء وتقديم التهاني والاستشارات</p>
+                <a class="custom-button scroll-to-target" href="../Account/Login">دخول </a> |  <a class="custom-button scroll-to-target" href="../Account/Register">تسجيل حساب جديد </a>
+
+
+            </div>
+            <div class="col-md-12 col-lg-6 about-right-side">
+                <div class="full-image-container hovered">
+                    <img class="img-fluid d-none d-md-block" src="img/about.jpg" alt="">
+                    <div class="full-image-overlay">
+                        <h3>لماذا <strong>DXN ؟</strong></h3>
+                        <ul class="list-why-choose-us">
+                            <li>منتجات طبيعية خالية من السموم</li>
+                            <li>العودة الى الطبيعة</li>
+                            <li>عشرات الاف من البحوث العلمية</li>
+                            <li>توفير فرص للعمل الحر</li>
+                            <li>اكثر من 7 مليون عضو حول العالم</li>
+                            <li>عمر الشركة 25 سنة </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About Content Ends -->
+    </div>
+    <!-- Container Ends -->
+</section>
+<!-- About Section Ends -->
+<!-- Project Manager Section Starts -->
+<section class="projectmanager" id="projectmanager">
+    <!-- Section Overlay Starts -->
+    <div class="section-overlay">
+        <!-- Container Starts -->
+        <div class="container">
+            <div class="row">
+                <!-- Image Starts -->
+                <div class="col-md-12 col-lg-12 col-xl-6">
+                    <img class="img-fluid projectmanagerpicture" src="img/projectmanager.jpg" alt="project manager">
+                </div>
+                <!-- Image Ends -->
+                <!-- Details Starts -->
+                <div class="col-md-12 col-lg-12 col-xl-6">
+                    <h1>عالم واحد سوق واحد</h1>
+                    <h3>One World One Market</h3>
+
                     <p>
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text
-                        amr songr balga ami toami valo lasi ciri din akr dali
+                        تعمل أسرة DXN لتحقيق هذا الطموح من خلال استراتيجية التسويق المتعدد المستويات من خلال توفير منتجات فريدة من نوعها غنية بالجانوديرما للمضي قدما نحو صحة أفضل وإستقلال مالي وإنجازات شخصية متميزة، وبالتالي الارتقاء بنوعية حياة أفضل.
+
                     </p>
-                    <a class="button-default" href="#">Learn Now</a>
+                    <blockquote>
+                        منذ تأسيس DXN وهي تتبع مفهوم "التنين واحد،" تتوضّح من خلال العملية الزراعية، الحصاد، التجهيز، التعبئة والتوزيع.
+                        هذا المفهوم أدّى إلى نجاح DXN في السوق وإرتقائها للقيادة بتوسيع حضورها العالمي ومواجهة المنافسة في الأسواق العالمية.
+                    </blockquote>
+                    <!-- Social Media Starts -->
+                    <div class="social-icons">
+                        <ul class="social">
+                            <li>
+                                <a class="twitter" href="https://twitter.com/dxniraq2u" title="twitter"></a>
+                            </li>
+                            <li>
+                                <a class="facebook" href="https://www.facebook.com/dxniraq2u/" title="facebook"></a>
+                            </li>
+                            <li>
+                                <a class="google" href="#" title="google"></a>
+                            </li>
+                            <li>
+                                <a class="skype" href="#" title="skype"></a>
+                            </li>
+                            <li>
+                                <a class="instagram" href="#" title="instagram"></a>
+                            </li>
+                            <li>
+                                <a class="linkedin" href="#" title="linkedin"></a>
+                            </li>
+                            <li>
+                                <a class="youtube" href="https://www.youtube.com/channel/UC8-HjP25o4XDXOjPU2hydkg/videos" title="youtube"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Social Media Ends -->
                 </div>
             </div>
+            <!-- Details Ends -->
         </div>
+        <!-- Container Ends -->
     </div>
-</div>
-<!--End of About Area-->
-<!--Course Area Start-->
-<div class="course-area section-padding bg-white">
+</section>
+<!-- Project Manager Section Ends -->
+<!-- Services Section Starts -->
+<section id="services" class="services">
+    <!-- Container Starts -->
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title-wrapper">
-                    <div class="section-title">
-                        <h3>POPULAR COURSES</h3>
-                        <p>There are many variations of passages of Lorem Ipsum</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Main Heading Starts -->
+        <div class="text-center top-text">
+            <h1><span>أهم</span> خدماتنا</h1>
+            <h4>خدمات الشركة في العراق</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="single-item">
-                    <div class="single-item-image overlay-effect">
-                        <a href="#"><img src="DXN2019/img/course/1.jpg" alt=""></a>
-                    </div>
-                    <div class="single-item-text">
-                        <h4><a href="#">Photoshop CC 2017</a></h4>
-                        <div class="single-item-text-info">
-                            <span>By: <span>M S Nawaz</span></span>
-                            <span>Date: <span>20.5.15</span></span>
-                        </div>
-                        <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
-                        <div class="single-item-content">
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-eye"></i>59</span>
-                                <span><i class="zmdi zmdi-comments"></i>19</span>
-                            </div>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="button-bottom">
-                        <a href="#" class="button-default">Learn Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="single-item">
-                    <div class="single-item-image overlay-effect">
-                        <a href="#"><img src="DXN2019/img/course/2.jpg" alt=""></a>
-                    </div>
-                    <div class="single-item-text">
-                        <h4><a href="#">Illustrator CC 2017</a></h4>
-                        <div class="single-item-text-info">
-                            <span>By: <span>Subas Das</span></span>
-                            <span>Date: <span>20.5.15</span></span>
-                        </div>
-                        <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
-                        <div class="single-item-content">
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-eye"></i>59</span>
-                                <span><i class="zmdi zmdi-comments"></i>19</span>
-                            </div>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="button-bottom">
-                        <a href="#" class="button-default">Learn Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="single-item">
-                    <div class="single-item-image overlay-effect">
-                        <a href="#"><img src="DXN2019/img/course/3.jpg" alt=""></a>
-                    </div>
-                    <div class="single-item-text">
-                        <h4><a href="#">Indesign CC 2017</a></h4>
-                        <div class="single-item-text-info">
-                            <span>By: <span>Momin Boss</span></span>
-                            <span>Date: <span>20.5.15</span></span>
-                        </div>
-                        <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm, by injected humo ur,There are many but the mri have suffered alteration in some </p>
-                        <div class="single-item-content">
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-eye"></i>59</span>
-                                <span><i class="zmdi zmdi-comments"></i>19</span>
-                            </div>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="button-bottom">
-                        <a href="#" class="button-default">Learn Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 text-center">
-                <a href="#" class="button-default button-large">Browse All Courses <i class="zmdi zmdi-chevron-left"></i></a>
-            </div>
+        <!-- Main Heading Starts -->
+        <!-- Divider Starts -->
+        <div class="divider text-center">
+            <span class="outer-line"></span>
+            <span class="fa fa-cogs" aria-hidden="true"></span>
+            <span class="outer-line"></span>
         </div>
+        <!-- Divider Ends -->
+        <!-- Services Starts -->
+        <div class="row services-box">
+            <!-- Service Item Starts -->
+            <div class="col-lg-4 col-md-6 col-sm-12 services-box-item">
+                <!-- Service Item Cover Starts -->
+                <span class="services-box-item-cover fa fa-leaf" data-headline="منتجات صحية"></span>
+                <!-- Service Item Cover Ends -->
+                <!-- Service Item Content Starts -->
+                <div class="services-box-item-content fa fa-leaf">
+                    <h2>منتجات طبيعية</h2>
+                    <p>اكثر من 50 منتج صحي طبيعي متوفر الان في فروع الشركة داخل العراق</p>
+                </div>
+                <!-- Service Item Content Ends -->
+            </div>
+            <!-- Service Item Ends -->
+            <!-- Service Item Starts -->
+            <div class="col-lg-4 col-md-6 col-sm-12 services-box-item">
+                <!-- Service Item Cover Starts -->
+                <span class="services-box-item-cover fa fa-anchor" data-headline="التسويق الالكتروني"></span>
+                <!-- Service Item Cover Ends -->
+                <!-- Service Item Content Starts -->
+                <div class="services-box-item-content fa fa-anchor">
+                    <h2>التسوق الالكتروني</h2>
+                    <p>بامكان أعضاء الشركة تحميل التطبيق الخاص بالشركة والتسوق عبر الانترنت</p>
+                </div>
+                <!-- Service Item Content Ends -->
+            </div>
+            <!-- Service Item Ends -->
+            <!-- Service Item Starts -->
+            <div class="col-lg-4 col-md-6 col-sm-12 services-box-item">
+                <!-- Service Item Cover Starts -->
+                <span class="services-box-item-cover fa fa-comments-o" data-headline="المحاضرات الدروس"></span>
+                <!-- Service Item Cover Ends -->
+                <!-- Service Item Content Starts -->
+                <div class="services-box-item-content fa fa-comments-o">
+                    <h2>المحاضرات الدروس</h2>
+                    <p>تعقد العشرات من المحاضرات والدورات التدريبية شهريا في مقرات وفروع الشركة داهل العراق. كذلك تعقد بعض الدورات عبر الانترنت</p>
+                </div>
+                <!-- Service Item Content Ends -->
+            </div>
+            <!-- Service Item Ends -->
+            <!-- Service Item Starts -->
+            <div class="col-lg-4 col-md-6 col-sm-12 services-box-item">
+                <!-- Service Item Cover Starts -->
+                <span class="services-box-item-cover fa fa-support" data-headline="دعم فني متواصل"></span>
+                <!-- Service Item Cover Ends -->
+                <div class="services-box-item-content fa fa-support">
+                    <h2>دعم فني متواصل</h2>
+                    <p>دعم فني 24 ساعة للاجابة على الاسئلة والاستفسارات </p>
+                </div>
+            </div>
+            <!-- Service Item Ends -->
+            <!-- Service Item Starts -->
+            <div class="col-lg-4 col-md-6 col-sm-12 services-box-item">
+                <!-- Service Item Cover Starts -->
+                <span class="services-box-item-cover fa fa-cogs" data-headline="رحلات سياحية"></span>
+                <!-- Service Item Cover Ends -->
+                <!-- Service Item Content Starts -->
+                <div class="services-box-item-content fa fa-cogs">
+                    <h2>رحلات سياحية</h2>
+                    <p>توفر الشركة سنويا رحلات سياحية للاعضاء النشطين. كان اخرها رحلة الى ماليزيا لزيارة مصانع الشركة</p>
+                </div>
+                <!-- Service Item Content Ends -->
+            </div>
+            <!-- Service Item Ends -->
+            <!-- Service Item Starts -->
+            <div class="col-lg-4 col-md-6 col-sm-12 services-box-item">
+                <!-- Service Item Cover Starts -->
+                <span class="services-box-item-cover fa fa-file-pdf-o" data-headline="مستشار أعمال"></span>
+                <!-- Service Item Cover Ends -->
+                <!-- Service Item Content Starts -->
+                <div class="services-box-item-content fa fa-file-pdf-o">
+                    <h2>مستشار اعمال</h2>
+                    <p>توفر الشركة مستشار خاص لكل عضو نشط لتوجيه العضو نحو الطريق الصحيح لتحقيق الارباح والعمل مع الشركة في نظام التسويق عالم واحد سوق واحد</p>
+                </div>
+                <!-- Service Item Content Ends -->
+            </div>
+            <!-- Service Item Ends -->
+        </div>
+        <!-- Services Ends -->
     </div>
-</div>
-<!--End of Course Area-->
-<!--Fun Factor Area Start-->
-<div class="fun-factor-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title-wrapper white">
-                    <div class="section-title">
-                        <h3>IMPORTANT FACTS</h3>
-                        <p>There are many variations of passages of Lorem Ipsum</p>
+</section>
+<!-- Services Section Ends -->
+<!-- Testimonials Section Starts -->
+<section class="testimonials">
+    <div class="section-overlay">
+        <!-- Container Starts -->
+        <div class="container">
+            <!-- Main Heading Starts -->
+            <div class="text-center top-text">
+                <h1><span>مستخدمو </span> المنتجات</h1>
+                <h4>الشهادات</h4>
+            </div>
+            <!-- Main Heading Starts -->
+            <!-- Blockquotes Starts -->
+            <div id="quote-carousel" class="carousel slide" data-ride="carousel">
+                <!-- Wrapper For Sliders Starts -->
+                <!-- Indicators Starts -->
+                <ol class="carousel-indicators mx-auto">
+                    <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                    @*<li data-target="#quote-carousel" data-slide-to="1"></li>
+                        <li data-target="#quote-carousel" data-slide-to="2"></li>*@
+                </ol>
+                <!-- Indicators Ends -->
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <blockquote>
+                            <img class="rounded-circle img-fluid" height="30px" src="https://dxniraq2u.com/images/IMG_0708-a181335745.jpg" alt="client">
+                            <p> حققت الحرية المالية عبر شركة دي اكس ان وانصح الشباب بالعمل مع هذه الشركة </p>
+                            <h5>كمال الدوسري</h5>
+                            <h6>Kamal Aldosary</h6>
+                        </blockquote>
                     </div>
+
+
+                    @*@foreach (var Item in Model.Testimonial)
+                            {
+                                        <div class="carousel-item">
+                                            <blockquote>
+                                                <img width="150px" class="rounded-circle img-fluid" height ="100px" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Item.ApplicationUser.ProfileImage )" alt="@Item.ApplicationUser.ArName">
+                                                <p> @Item.Content </p>
+                                                <h5>@Item.ApplicationUser.ArName</h5>
+                                                <h6>@Item.ApplicationUser.EnName</h6>
+                                            </blockquote>
+                                        </div>
+                        }*@
+
+
                 </div>
+                <!-- Wrapper For Sliders Ends -->
             </div>
+            <!-- Blockquotes Ends -->
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-12">
-                <div class="single-fun-factor">
-                    <h4>Teachers</h4>
-                    <h2><span class="counter">79</span>+</h2>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-12">
-                <div class="single-fun-factor">
-                    <h4>Members</h4>
-                    <h2><span class="counter">120</span>+</h2>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-12">
-                <div class="single-fun-factor">
-                    <h4>Courses</h4>
-                    <h2><span class="counter">36</span>+</h2>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-12">
-                <div class="single-fun-factor">
-                    <h4>Countries</h4>
-                    <h2><span class="counter">20</span>+</h2>
-                </div>
-            </div>
-        </div>
+        <!-- Container Ends -->
     </div>
-</div>
-<!--End of Fun Factor Area-->
-<!--Latest News Area Start-->
-<div class="latest-area section-padding bg-white">
+</section>
+<!-- Testimonials Section Ends -->
+<!-- Portfolio Section Starts -->
+<section id="portfolio" class="portfolio">
+    <!-- Container Starts -->
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title-wrapper">
-                    <div class="section-title">
-                        <h3>Latest News</h3>
-                        <p>There are many variations of passages</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Main Heading Starts -->
+        <div class="text-center top-text">
+            <h1><span>أهم</span> المنتجات</h1>
+            <h4>نماذج للمنتجات المتوفرة في فروع الشركة</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-12">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="DXN2019/img/latest/1.jpg" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                            <span><i class="zmdi zmdi-eye"></i>59</span>
-                            <span><i class="zmdi zmdi-comments"></i>19</span>
-                        </div>
-                        <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
-                        <a href="#" class="button-default">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-12">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="DXN2019/img/latest/2.jpg" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                            <span><i class="zmdi zmdi-eye"></i>59</span>
-                            <span><i class="zmdi zmdi-comments"></i>19</span>
-                        </div>
-                        <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
-                        <a href="#" class="button-default">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-12">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="DXN2019/img/latest/3.jpg" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                            <span><i class="zmdi zmdi-eye"></i>59</span>
-                            <span><i class="zmdi zmdi-comments"></i>19</span>
-                        </div>
-                        <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
-                        <a href="#" class="button-default">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-12">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="DXN2019/img/latest/4.jpg" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
-                            <span><i class="zmdi zmdi-eye"></i>59</span>
-                            <span><i class="zmdi zmdi-comments"></i>19</span>
-                        </div>
-                        <p>There are many variaons of passages of Lorem Ipsuable, amrn in some by injected humour, </p>
-                        <a href="#" class="button-default">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
+        <!-- Main Heading Starts -->
+        <!-- Divider Starts -->
+        <div class="divider text-center">
+            <span class="outer-line"></span>
+            <span class="fa fa-image" aria-hidden="true"></span>
+            <span class="outer-line"></span>
         </div>
+        <!-- Divider Ends -->
+        <!-- Filter Wrapper Starts -->
+        <nav>
+            <ul class="simplefilter nav nav-pills d-block">
+                <!-- Filter Wrapper Items Starts -->
+                @*<li class="active" data-filter="all"><i class="fa fa-reorder"></i> جميع  المنتجات</li>
+                <li data-filter="1">المكملات الغذائية</li>
+                <li data-filter="2">المشروبات الصحية</li>
+                <li data-filter="3">العناية الشخصية</li>*@
+                <!-- Filter Wrapper Items Ends -->
+            </ul>
+        </nav>
+        <!-- Filter Wrapper Ends -->
+        <div>
+            <div class="filtr-container">
+                @foreach (var item in Model.Product)
+                {
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-3 filtr-item" data-category="@item.CategoryProductId">
+                        <div class="magnific-popup-gallery">
+                            <!-- Thumbnail Starts -->
+                            <figure class="thumbnail thumbnail__portfolio">
+                                <a class="image-wrap" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image  )" data-gal="magnific-pop-up[image]" title="@item.ProductNameEnglish">
+
+                                    <img class="img-fluid" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image)" /><span class="zoom-icon"></span>
+
+
+                                    <span class="zoom-icon"></span>
+                                </a>
+
+
+
+                            </figure>
+                            <!-- Thumbnail Ends -->
+                            <!-- Caption Starts -->
+                            <div class="caption">
+                                <h3>@item.ProductNameArabic</h3>
+                                <p>@item.ProductNameEnglish  </p>
+                            </div>
+                            <!-- Caption Ends -->
+                        </div>
+                    </div>
+                }
+
+
+
+               
     </div>
-</div>
-<!--End of Latest News Area-->
-<!--Online Product Area Start-->
-<div class="product-area section-bottom-padding bg-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title-wrapper">
-                    <div class="section-title">
-                        <h3>Online Library</h3>
-                        <p>There are many variations of passages</p>
-                    </div>
-                </div>
+    <!-- Container Ends -->
+</section>
+
+<!-- Portfolio Section Ends -->
+<!-- Facts Section Starts -->
+<section class="facts">
+    <div class="section-overlay">
+        <!-- Container Starts -->
+        <div class="container">
+            <!-- Main Heading Starts -->
+            <div class="text-center top-text">
+                <h1><span>بعض</span> الإحصائيات</h1>
+                <h4></h4>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product-item">
-                    <div class="single-product-image">
-                        <a href="#"><img src="DXN2019/img/product/1.jpg" alt=""></a>
-                    </div>
-                    <div class="single-product-text">
-                        <h4><a href="#">Title Product Here</a></h4>
-                        <h5>Book</h5>
-                        <div class="product-price">
-                            <h3>$ 28</h3>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">ADD TO CART</button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product-item">
-                    <div class="single-product-image">
-                        <a href="#"><img src="DXN2019/img/product/2.jpg" alt=""></a>
-                    </div>
-                    <div class="single-product-text">
-                        <h4><a href="#">Title Product Here</a></h4>
-                        <h5>Book</h5>
-                        <div class="product-price">
-                            <h3>$ 28</h3>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">ADD TO CART</button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product-item">
-                    <div class="single-product-image">
-                        <a href="#"><img src="DXN2019/img/product/3.jpg" alt=""></a>
-                    </div>
-                    <div class="single-product-text">
-                        <h4><a href="#">Title Product Here</a></h4>
-                        <h5>Book</h5>
-                        <div class="product-price">
-                            <h3>$ 28</h3>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">ADD TO CART</button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product-item">
-                    <div class="single-product-image">
-                        <a href="#"><img src="DXN2019/img/product/4.jpg" alt=""></a>
-                    </div>
-                    <div class="single-product-text">
-                        <h4><a href="#">Title Product Here</a></h4>
-                        <h5>Book</h5>
-                        <div class="product-price">
-                            <h3>$ 28</h3>
-                            <div class="single-item-rating">
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star"></i>
-                                <i class="zmdi zmdi-star-half"></i>
-                            </div>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">ADD TO CART</button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-favorite"></i></button>
-                            <button type="button" class="button-default"><i class="zmdi zmdi-refresh-alt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End of Online Product Area-->
-<!--Testimonial Area Start-->
-<div class="testimonial-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 offset-lg-0 col-md-12 col-12" dir="rtl">
+            <!-- Main Heading Starts -->
+            <!-- Fact Badges Starts -->
+            <div class="fact-badges">
                 <div class="row">
-                    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
-                        <div class="testimonial-image-slider text-center">
-                            <div class="sin-testiImage">
-                                <img src="DXN2019/img/testimonial/1.jpg" alt="testimonial 1" />
-                            </div>
-                            <div class="sin-testiImage">
-                                <img src="DXN2019/img/testimonial/2.jpg" alt="testimonial 2" />
-                            </div>
-                            <div class="sin-testiImage">
-                                <img src="DXN2019/img/testimonial/3.jpg" alt="testimonial 3" />
-                            </div>
-                            <div class="sin-testiImage">
-                                <img src="DXN2019/img/testimonial/1.jpg" alt="testimonial 1" />
-                            </div>
-                            <div class="sin-testiImage">
-                                <img src="DXN2019/img/testimonial/2.jpg" alt="testimonial 2" />
-                            </div>
-                            <div class="sin-testiImage">
-                                <img src="DXN2019/img/testimonial/3.jpg" alt="testimonial 3" />
-                            </div>
-                        </div>
+                    <!-- Fact Badge Item Starts -->
+                    <div class="col-md-3 col-sm-6">
+                        <i class="fa fa-briefcase"></i>
+                        <h2>
+                            <span><strong class="badges-counter">14 الف</strong>+</span>
+                        </h2>
+                        <h4>عضو في العراق</h4>
                     </div>
-                </div>
-                <div class="testimonial-text-slider text-center" dir="rtl">
-                    <div class="sin-testiText">
-                        <h2>M S Nawaz </h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                    <!-- Fact Badge Item Ends -->
+                    <!-- Fact Badge Item Starts -->
+                    <div class="col-md-3 col-sm-6">
+                        <i class="fa fa-clock-o"></i>
+                        <h2>
+                            <span><strong class="badges-counter">80</strong>+</span>
+                        </h2>
+                        <h4>عدد المنتجات</h4>
                     </div>
-                    <div class="sin-testiText">
-                        <h2>Chowchilla Madera</h2>
-                        <p>Nam nec tellus a odio tincidunt This lorem is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean nisi sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum gravida.</p>
+                    <!-- Fact Badge Item Ends -->
+                    <!-- Fact Badge Item Starts -->
+                    <div class="col-md-3 col-sm-6">
+                        <i class="fa fa-home"></i>
+                        <h2>
+                            <span><strong class="badges-counter">9</strong>+</span>
+                        </h2>
+                        <h4>فروع</h4>
                     </div>
-                    <div class="sin-testiText">
-                        <h2>Kattie Luis</h2>
-                        <p>Nam nec tellus a odio tincidunt This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean tincidunt sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum Photoshop.</p>
+                    <!-- Fact Badge Item Ends -->
+                    <!-- Fact Badge Item Starts -->
+                    <div class="col-md-3 col-sm-6">
+                        <i class="fa fa-user"></i>
+                        <h2>
+                            <span><strong class="badges-counter">60 الف دولار</strong>+</span>
+                        </h2>
+                        <h4>الارباح الشهرية</h4>
                     </div>
-                    <div class="sin-testiText">
-                        <h2>M S Nawaz </h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-                    </div>
-                    <div class="sin-testiText">
-                        <h2>Chowchilla Madera</h2>
-                        <p>Nam nec tellus a odio tincidunt This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, aliquet lorem quis tellus velit bibendum auctor, nisi elit consequat ipsum</p>
-                    </div>
-                    <div class="sin-testiText">
-                        <h2>Kattie Luis</h2>
-                        <p>Nam nec tellus a odio tincidunt This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem gravida tincidunt quis bibendum auctor, nisi elit consequat ipsum</p>
-                    </div>
+                    <!-- Fact Badge Item Ends -->
                 </div>
             </div>
+            <!-- Fact Badges Ends -->
         </div>
+        <!-- Container Ends -->
     </div>
-</div>
-<!--End of Testimonial Area-->
-<!--Event Area Start-->
-<div class="event-area section-padding bg-white">
+</section>
+<!-- facts Section Ends -->
+<!-- Team Section Starts -->
+
+<section id="team" class="team">
+    <!-- Container Starts -->
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title-wrapper">
-                    <div class="section-title">
-                        <h3>OUR EVENTS</h3>
-                        <p>There are many variations of passages</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Main Heading Starts -->
+        <div class="text-center top-text">
+            <h1><span>أعضاء</span> العراق</h1>
+            <h4>تعرّف علينا أكثر</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-event-item">
-                    <div class="single-event-image">
-                        <a href="#">
-                            <img src="DXN2019/img/event/1.jpg" alt="">
-                            <span><span>15</span>Jun</span>
-                        </a>
-                    </div>
-                    <div class="single-event-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                            <span><i class="zmdi zmdi-pin"></i>Dhaka Bangladesh</span>
-                        </div>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                        <a class="button-default" href="#">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-event-item">
-                    <div class="single-event-image">
-                        <a href="#">
-                            <img src="DXN2019/img/event/2.jpg" alt="">
-                            <span><span>20</span>Apr</span>
-                        </a>
-                    </div>
-                    <div class="single-event-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                            <span><i class="zmdi zmdi-pin"></i>Jessore Bangladesh</span>
-                        </div>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                        <a class="button-default" href="#">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-event-item">
-                    <div class="single-event-image">
-                        <a href="#">
-                            <img src="DXN2019/img/event/3.jpg" alt="">
-                            <span><span>06</span>Dec</span>
-                        </a>
-                    </div>
-                    <div class="single-event-text">
-                        <h3><a href="#">Learn English in ease</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                            <span><i class="zmdi zmdi-pin"></i>Dhaka. Bangladesh</span>
-                        </div>
-                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                        <a class="button-default" href="#">LEARN Now</a>
-                    </div>
-                </div>
-            </div>
+        <!-- Main Heading Ends -->
+        <!-- Divider Starts -->
+        <div class="divider text-center">
+            <span class="outer-line"></span>
+            <span class="fa fa-users" aria-hidden="true"></span>
+            <span class="outer-line"></span>
         </div>
+        <!-- Divider Ends -->
+        <!-- Team Members Starts -->
+        <div class="row team-members magnific-popup-gallery">
+
+            @foreach (var Item in Model.ApplicationUser)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="team-member">
+                        <!-- Team Member Picture Starts -->
+                        <a title="@Item.EnName" href="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Item.ProfileImage)" data-gal="magnific-pop-up[team]" class="team-member-img-wrap"><img src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + Item.ProfileImage)" height="100" alt="@Item.EnName"></a>
+                        <!-- Team Member Picture Ends -->
+                        <!-- Team Member Details Starts -->
+                        <div class="team-member-caption social-icons">
+                            <h4>@Item.ArName</h4>
+                            <p>@Item.City.ArCityName</p>
+                            @*<ul class="list list-inline social">
+                                    <li>
+                                        <a href="#" class="fa fa-facebook"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fa fa-twitter"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fa fa-google-plus"></a>
+                                    </li>
+                                </ul>*@
+                        </div>
+                        <!-- Team Member Details Ends -->
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- Team Members Ends -->
     </div>
-</div>
-<!--End of Event Area-->
-<!--Newsletter Area Start-->
-<div class="newsletter-area">
+    <!-- Container Ends -->
+</section>
+
+<!-- Team Section Ends -->
+<!-- Newsletter Section Starts -->
+<section class="newsletter">
+    <div class="section-overlay">
+        <!-- Container Starts -->
+        <div class="container">
+            <!-- Main Heading Starts -->
+            <div class="text-center top-text">
+                <h1><span>الرسائل</span> الإخبارية</h1>
+                <h4>سجل ليصلكم جديد الاخبار</h4>
+            </div>
+            <!-- Main Heading Ends -->
+            <div class="newsletter-content">
+                <p class="text-center">سجل هنا لتلقي رسائل بريد إلكتروني<br> عن العروض والأسعار الخاصة بالإضافة إلى آخر الأخبار مباشرةً الى صندوق بريدك الإلكتروني</p>
+                <!-- Newsletter Form Starts -->
+                <form class="form-inputs">
+                    <!-- Newsletter Form Input Field Starts -->
+                    <div class="col-md-12 form-group custom-form-group p-0">
+                        <span class="input custom-input">
+                            <input placeholder="أدخل بريدك الإلكتروني" class="input-field custom-input-field" type="text" />
+                            <label class="input-label custom-input-label">
+                                <i class="fa fa-envelope-open-o icon icon-field"></i>
+                            </label>
+                        </span>
+                    </div>
+                    <!-- Newsletter Form Input Field Ends -->
+                    <!-- Newsletter Form Submit Button Starts -->
+                    <button id="submit" name="submit" type="submit" class="custom-button" title="Send">اشترك الآن</button>
+                    <!-- Newsletter Form Submit Button Ends -->
+                </form>
+                <!-- Newsletter Form Ends -->
+            </div>
+        </div>
+        <!-- Container Ends -->
+    </div>
+</section>
+<!-- Newsletter Section Ends -->
+<!-- Blog Section Starts -->
+<section id="blog" class="blog">
+    <!-- Container Starts -->
     <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-md-5">
-                <div class="newsletter-content">
-                    <h3>SUBSCRIBE</h3>
-                    <h2>TO OUR NEWSLETTER</h2>
-                </div>
-            </div>
-            <div class="col-lg-7 col-md-7">
-                <div class="newsletter-form angle">
-                    <form action="#" id="mc-form" class="mc-form footer-newsletter fix">
-                        <div class="subscribe-form">
-                            <input id="mc-email" type="email" name="email" placeholder="Enter your email address...">
-                            <button id="mc-submit" type="submit">SUBSCRIBE</button>
+        <!-- Main Heading Starts -->
+        <div class="text-center top-text">
+            <h1><span>المدونة</span> </h1>
+            <h4>آخر المقالات</h4>
+        </div>
+        <!-- Main Heading Starts -->
+        <!-- Divider Starts -->
+        <div class="divider text-center">
+            <span class="outer-line"></span>
+            <span class="fa fa-comments" aria-hidden="true"></span>
+            <span class="outer-line"></span>
+        </div>
+        <!-- Divider Ends -->
+        <!-- Latest Blog Posts Starts -->
+        <div class="row blog-content">
+            <!-- Article Starts -->
+
+            @foreach (var item in Model.BlogPost)
+            {
+                <article class="col-lg-4 col-md-12">
+                    <!-- Figure Starts -->
+                    <figure class="blog-figure">
+
+                        <a asp-controller="BlogPosts" asp-action="Details" asp-route-id="@item.Id">
+
+                            @Html.DisplayFor(modelItem => item.Title)
+
+                            @*<img class="img-fluid" src="img/blog/blog-post-1-thumb.jpg" alt="">*@
+                            <img height="200" class="img-fluid" src="@Url.Content("~/" + dxniraq2u2018.Properties.Resources.imgFolder + "/" + item.Image)" />
+                        </a>
+                    </figure>
+                    <!-- Figure Ends -->
+                    <!-- Excerpt Starts -->
+                    <div class="blog-excerpt">
+                        <a asp-controller="BlogPosts" asp-action="Details" asp-route-id="@item.Id"><h3>@item.Title</h3></a>
+                        @*<p>@item.Introduction  </p>*@
+                        <div class="meta">
+                            <span class="date"><i class="fa fa-calendar"></i>@item.Date.ToString("dd MMM yyyy")</span>
+                            @*<span><a href="blog-post-rtl.html"><i class="fa fa-commenting"></i> 18</a></span>*@
+                            <a asp-controller="BlogPosts" class="pull-left" asp-action="Details" asp-route-id="@item.Id">اقرأ المزيد</a>
+
                         </div>
-                    </form>
-                    <!-- mailchimp-alerts Start -->
-                    <div class="mailchimp-alerts text-centre fix pull-left">
-                        <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
-                        <div class="mailchimp-success"></div><!-- mailchimp-success end -->
-                        <div class="mailchimp-error"></div><!-- mailchimp-error end -->
                     </div>
-                    <!-- mailchimp-alerts end -->
+                    <!-- Excerpt Ends -->
+                </article>}
+
+
+            <div class="mx-auto">
+                <a class="custom-button" href="../BlogPosts/PostsLists/5">كل المقالات</a>
+            </div>
+        </div>
+        <!-- Latest Blog Posts Ends -->
+    </div>
+</section>
+<!-- Blog Section Ends -->
+<!-- Video Section Starts -->
+<section class="videopromotion">
+    <div class="section-overlay">
+        <!-- Container Starts -->
+        <div class="container">
+            <!-- Main Heading Starts -->
+            <div class="text-center top-text">
+                <h1><span>فديو تعريفي</span> DXN</h1>
+                <h4>DXN Company profile</h4>
+            </div>
+            <!-- Main Heading Ends -->
+            <div class="video-content">
+                <!--<p class="text-center">نحن نقدم خدمات لحرفائنا بمميّزات هامة و أسعار رائعة<br> لاتتردّد في مشاهدة الفبديو</p>-->
+                <!-- Video Play Starts -->
+                <div class="magnific-popup-gallery">
+                    <div class="btn-wrapper text-center"><a class="image-wrap mfp-youtube" href="https://www.youtube.com/watch?v=jHTTlD399zw"></a></div>
                 </div>
+                <!-- Video Play Ends -->
+            </div>
+        </div>
+        <!-- Container Ends -->
+    </div>
+</section>
+<!-- Video Section Ends -->
+<!-- Contact Section Starts -->
+<section id="contact" class="contact">
+    <!-- Container Starts -->
+    <div class="container">
+        <!-- Main Heading Starts -->
+        <div class="text-center top-text">
+            <h1><span>إتصل</span> بنا</h1>
+            <h4>نحن في خدمتك</h4>
+        </div>
+        <!-- Main Heading Starts -->
+        <!-- Divider Starts -->
+        <div class="divider text-center">
+            <span class="outer-line"></span>
+            <span class="fa fa-envelope" aria-hidden="true"></span>
+            <span class="outer-line"></span>
+        </div>
+        <!-- Divider Ends -->
+    </div>
+    <!-- Container Ends -->
+    <!-- Map Section Starts -->
+    <div class="info-map">
+        <div class="google-map">
+            <div class="gmap_container">
+                <div id="gmap_canvas"></div>
             </div>
         </div>
     </div>
-</div>
-<!--End of Newsletter Area-->
+    <!-- Info Map Boxes Starts -->
+    <div class="container">
+        <div class="row info-map-boxes">
+            <!-- Left Info Map Box Starts -->
+            <div class="col-md-6 col-sm-12">
+                <div class="info-map-boxes-item fa fa-clock-o">
+                    <h1>أوقات العمل</h1>
+                    <p>
+                        الإثنين - الجمعة : 08:00 - 18:00
+                        <br>الجمعة - السبت : 08:00 - 12:30
+                        <br>الأحد - مغلق
+                    </p>
+                </div>
+            </div>
+            <!-- Left Info Map Box Ends -->
+            <!-- Right Info Map Box Starts -->
+            <div class="col-md-6 col-sm-12">
+                <div class="info-map-boxes-item fa fa-phone">
+                    <h1>الهاتف &amp; الأنترنات</h1>
+                    <p>
+                        الهاتف 07722699330
+                        <br> 07722699331
+                        <br><a href="#">info@dxniraq2u.com</a>
+                    </p>
+                </div>
+            </div>
+            <!-- Right Info Map Box Ends -->
+        </div>
+    </div>
+    <!-- Info Map Boxes Ends -->
+</section>
+<!-- Contact Section Ends -->
+<!-- Contact Form Section Starts -->
+<section class="contactform">
+    <div class="section-overlay">
+        <div class="container">
+            <!-- Main Heading Starts -->
+            <div class="text-center top-text">
+                <h1><span>راسلنا على</span> البريد الإلكتروني</h1>
+                <h4>سوف نجيبك قريبا</h4>
+            </div>
+            <!-- Main Heading Ends -->
+            <div class="form-container">
+                <!-- Contact Form Starts -->
+                <form class="formcontact" method="post" action="php/process-form.php">
+                    <div class="row form-inputs">
+                        <!-- First Name Field Starts -->
+                        <div class="col-md-6 form-group custom-form-group">
+                            <span class="input custom-input">
+                                <input placeholder="الإسم" class="input-field custom-input-field" id="firstname" name="firstname" type="text" required data-error="NEW ERROR MESSAGE">
+                                <label class="input-label custom-input-label">
+                                    <i class="fa fa-user icon icon-field"></i>
+                                </label>
+                            </span>
+                        </div>
+                        <!-- First Name Field Ends -->
+                        <!-- Last Name Field Starts -->
+                        <div class="col-md-6 form-group custom-form-group">
+                            <span class="input custom-input">
+                                <input placeholder="اللقب" class="input-field custom-input-field" id="lastname" name="lastname" type="text" required>
+                                <label class="input-label custom-input-label">
+                                    <i class="fa fa-user-o icon icon-field"></i>
+                                </label>
+                            </span>
+                        </div>
+                        <!-- Last Name Field Ends -->
+                        <!-- Message Field Starts -->
+                        <div class="form-group custom-form-group col-md-12">
+                            <textarea placeholder="الرسالة" id="message" name="message" cols="45" rows="7" required></textarea>
+                        </div>
+                        <!-- Message Field Ends -->
+                        <!-- Email Name Field Starts -->
+                        <div class="col-md-6 form-group custom-form-group">
+                            <span class="input custom-input">
+                                <input placeholder="البريد الإلكتروني" class="input-field custom-input-field" id="email" name="email" type="text" required>
+                                <label class="input-label custom-input-label">
+                                    <i class="fa fa-envelope icon icon-field"></i>
+                                </label>
+                            </span>
+                        </div>
+                        <!-- Email Name Field Ends -->
+                        <!-- Submit Button Starts -->
+                        <div class="col-md-6 submit-form">
+                            <button id="form-submit" name="submit" type="submit" class="custom-button" title="Send">إرسال</button>
+                        </div>
+                        <!-- Submit Button Ends -->
+                        <!-- Form Submit Message Starts -->
+                        <div class="col-sm-12 text-center output_message_holder d-none">
+                            <p class="output_message"></p>
+                        </div>
+                        <!-- Form Submit Message Ends -->
+                    </div>
+                </form>
+                <!-- Contact Form Ends -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Form Section Ends -->
+<!-- Logos Section Starts -->
+<section class="logos">
+    <div class="container">
+        <ul class="bxslider" id="bxslider">
+            <!-- Logos Items Starts -->
+            <li><img src="img/logos-slider/3docean-light-background.png" alt="3docean"></li>
+            <li><img src="img/logos-slider/activeden-light-background.png" alt="activeden"></li>
+            <li><img src="img/logos-slider/audiojungle-light-background.png" alt="audiojungle"></li>
+            <li><img src="img/logos-slider/codecanyon-light-background.png" alt="codecanyon"></li>
+            <li><img src="img/logos-slider/graphicriver-light-background.png" alt="graphicriver"></li>
+            @*<li><img src="img/logos-slider/photodune-light-background.png" alt="photodune"></li>*@
+            <li><img src="img/logos-slider/themeforest-light-background.png" alt="themeforest"></li>
+            <!-- Logos Items Ends -->
+        </ul>
+    </div>
+</section>
+<!-- Logos Section Ends -->

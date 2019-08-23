@@ -53,6 +53,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Lecture.Flyer)
             </th>
+            <th>DOWNLOAD</th>
             <th>
                 @Html.DisplayNameFor(model => model.Lecture.IsOpen)
             </th>
@@ -90,15 +91,6 @@
                     @Html.DisplayFor(modelItem => item.Seats)
                 </td>
 
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.LevelType)
-                    </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.IsOnline)
-                    </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.IsAdminApproved)
-                    </td>*@
                 <td>
                     <a target="_blank" asp-controller="Branches" asp-action="Details" asp-route-id="@item.Branch.Id">  @Html.DisplayFor(modelItem => item.Branch.Name)</a>
                 </td>
@@ -118,9 +110,12 @@
 
 
                 </td>
+                <td>
+                    <a asp-action="PDFExport" asp-route-id="@item.Id">PDF</a> |
+                    <a asp-action="ImageExport" asp-route-id="@item.Id">IMAGE</a>
+                </td>
 
                 <td>
-                    @*@Html.DisplayFor(modelItem => item.IsOpen)*@
                     @if ((item.Date) < DateTime.Now)
                     {
                         <p style="color:red;">مغلقة</p>

@@ -77,5 +77,13 @@ namespace dxniraq2u2018.Properties {
                 return ResourceManager.GetString("imgFolder", resourceCulture);
             }
         }
+
+        //public static string exportlecfolder
+        //{
+        //    get
+        //    {
+        //        return ResourceManager.GetString("exportlecfolder", resourceCulture);
+        //    }
+        //}
     }
 }

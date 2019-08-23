@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using dxniraq2u2018.AuxiliaryClasses;
+using dxniraq2u2018.Data;
+using dxniraq2u2018.Extensions;
+using dxniraq2u2018.Extensions.CoreHtmlToImage;
+using dxniraq2u2018.Models;
+using FluentEmail.Core;
+using FluentEmail.Mailgun;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using dxniraq2u2018.Data;
-using dxniraq2u2018.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
-using System.Net.Mail;
-using System.Net;
-using FluentEmail.Mailgun;
-using FluentEmail.Core;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using dxniraq2u2018.AuxiliaryClasses;
 
 namespace dxniraq2u2018.Controllers
 {
@@ -43,13 +43,13 @@ namespace dxniraq2u2018.Controllers
             if (string.IsNullOrEmpty(SearchString))
             {
                 LectureViewModel = new LectureViewModel()
-                { Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now & a.IsAdminApproved == true).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date) };
+                { Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date) };
             }
             else if (!string.IsNullOrEmpty(SearchString))
             {
                 LectureViewModel = new LectureViewModel()
                 {
-                    Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now & a.IsAdminApproved == true).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date).Where(a => a.Title.Contains(SearchString) || a.Content.Contains(SearchString) || a.Branch.Name.Contains(SearchString) || a.Instructor.ArName.Contains(SearchString))
+                    Lectures = _context.Lectures.Where(a => a.Date > DateTime.Now).Include(a => a.Instructor).Include(a => a.Branch).OrderByDescending(a => a.Date).Where(a => a.Title.Contains(SearchString) || a.Content.Contains(SearchString) || a.Branch.Name.Contains(SearchString) || a.Instructor.ArName.Contains(SearchString))
                 };
             }
 
@@ -146,10 +146,7 @@ namespace dxniraq2u2018.Controllers
             ViewData["InstructorId"] = new SelectList(_context.ApplicationUser.Where(a => a.IsInstructor == true), "Id", "ArName");
             //ViewData["LevelType"] = new SelectList(Common.CourseLevel , "Id", "ArName");
 
-            DateTime today = DateTime.Now;
-            DateTime answer = today.AddDays(7);
-
-            ViewData["CurrentDate"] = answer;
+            ViewData["CurrentDate"] = DateTime.Now;
             return View();
         }
 
@@ -164,13 +161,6 @@ namespace dxniraq2u2018.Controllers
         {
             if (ModelState.IsValid)
             {
-                DateTime today = DateTime.Now;
-                DateTime answer = today.AddDays(7);
-
-                //if (lecture.Date < answer)
-                //{
-                //    return RedirectToAction(nameof(Index));
-                //}
                 lecture.IsOpen = true;
                 lecture.IsOnline = false;
                 lecture.IsAdminApproved = false;
@@ -316,6 +306,81 @@ namespace dxniraq2u2018.Controllers
         private bool LectureExists(int id)
         {
             return _context.Lectures.Any(e => e.Id == id);
+        }
+
+        public FileResult ImageExport(int? id)
+        {
+            var lecture = _context.Lectures
+              .Include(l => l.Branch)
+                 .Include(l => l.Instructor)
+              .SingleOrDefault(m => m.Id == id);
+
+            Export export = new Export();
+            export.LectureName = lecture.Title;
+            export.date = lecture.Date;
+            export.Profile = lecture.Instructor.ProfileImage;
+            export.Name = lecture.Instructor.UserName;
+            export.Venue = "city"; //lecture.Instructor.City.EnCityName;
+            var htmlString = HtmlHelper.ToHtml(this, "ImageExport", export);
+            var baseUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
+            var htmlForWkhtml = Regex.Replace(htmlString.ToString(), "<head>", string.Format("<head><base href=\"{0}\" />", baseUrl), RegexOptions.IgnoreCase);
+            var imageBytes = HtmlConverter.Instance.FromHtmlString(_environment,htmlForWkhtml, 1024, ImageFormat.Jpg);
+            return File(imageBytes, "image/jpg", DateTime.Now.Ticks + ".jpg");
+        }
+
+        public async Task<FileResult> PDFExport(int? id)
+        {
+            var lecture = _context.Lectures
+              .Include(l => l.Branch)
+                 .Include(l => l.Instructor)
+              .SingleOrDefault(m => m.Id == id);
+
+            Export export = new Export();
+            export.LectureName = lecture.Title;
+            export.date = lecture.Date;
+            export.Profile = lecture.Instructor.ProfileImage;
+            export.Name = lecture.Instructor.ArName;
+            export.Venue = lecture.Branch.Address;
+
+
+
+            //    PageOrientation = Orientation.Landscape,
+            //MinimumFontSize = 10, 
+            ////PageMargins  = new Margins(5,5,5,5),
+            //PageSize = Size.A3,s
+            //Rotativa.AspNetCore.Options.ImageFormat(5, 5, 5, 5)
+
+
+
+            string customSwitches = string.Format("--footer-spacing \"0\" ");
+
+            //--disable-smart-shrinking
+            Rotativa.AspNetCore.Options.Margins margins = new Rotativa.AspNetCore.Options.Margins(10, 3, 20, 3);
+            // CustomSwitches = "--disable-smart-shrinking"
+            var pdf = new Rotativa.AspNetCore.ViewAsPdf("PDFExport", export)
+            {
+                //FileName = "Test.pdf",
+                PageSize = Rotativa.AspNetCore.Options.Size.B5,
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageHeight = 20,
+                PageMargins = new Rotativa.AspNetCore.Options.Margins(5, 5, 5, 5),
+
+            };
+
+            var byteArray = await pdf.BuildFile(ControllerContext);
+            return File(byteArray, "application/pdf", DateTime.Now.Ticks + ".pdf");
+        }
+        protected void ExportToImage(string imageData)
+        {
+            //string base64 = Request.Form["hfImageData.UniqueID"].Split(',')[1];
+            byte[] bytes = Convert.FromBase64String(imageData);
+            Response.Clear();
+            Response.ContentType = "image/png";
+            Response.Headers.Add("Content-Disposition", "attachment; filename=HTML.png");
+            //Response.Head = true;
+            //Response.cacc.SetCacheability(HttpCacheability.NoCache);
+            Response.Body.Write(bytes, 0, bytes.Length);
+            Response.StatusCode = StatusCodes.Status200OK;
         }
     }
 }

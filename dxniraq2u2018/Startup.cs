@@ -95,8 +95,12 @@ namespace dxniraq2u2018
             app.UseStaticFiles();
             app.UseSession();
             app.UseAuthentication();
+            //Rotativa.NetCore.Options.().Setup(env);
+            Rotativa.AspNetCore.RotativaConfiguration.Setup(env);
+            
         
-            app.UseMvc(routes =>
+
+        app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
@@ -114,6 +118,9 @@ defaults: new { controller = "Posts", action = "Details", t = String.Empty });
 
 
             });
+
+            
+
         }
     }
 }
